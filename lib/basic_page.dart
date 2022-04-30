@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
-import './constants.dart';
+import 'constant/constants.dart';
 class BasicPage extends StatefulWidget {
   const BasicPage({Key? key}) : super(key: key);
   @override

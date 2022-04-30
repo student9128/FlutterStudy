@@ -22,7 +22,7 @@ class Constants {
     '滚动',
     '辅助功能'
   ];
-  static List<Map<String,String>> basicList=[{title:'基础组件',pageName:'basicWidgetPage'},{title:'',pageName:''}];
+  static List<Map<String,String>> basicList=[{title:'基础组件',pageName:'/basicWidgetPage'},{title:'',pageName:''}];
   static List<Widget> basicPageList = [
     const TextPage(),
     const ButtonPage(),
@@ -41,4 +41,5 @@ class Constants {
     'FlutterLogo',
     'Placeholder'
   ];
+  static List<String> advancedBtnList=['自定义组件-画线','测试'];
 }
