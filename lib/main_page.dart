@@ -38,6 +38,7 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey,
         onTap: (int index){
+          if(_currentIndex==index)return;
           _onTap(index);
           setState(() {
           _currentIndex=index;
