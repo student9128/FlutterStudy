@@ -12,9 +12,9 @@ class CustomLine extends CustomPainter{
   void paint(Canvas canvas, Size size) {
     _initPaint();
     _initAxisLine(size);
-    _drawAxisLine(canvas);
     _drawRulerAndText(canvas);
     _drawLine(canvas);
+    _drawAxisLine(canvas);
   }
 
   _initPaint() {
@@ -55,12 +55,16 @@ class CustomLine extends CustomPainter{
       _axisTextPaint.text =
           TextSpan(text: i.toString(), style: TextStyle(color: Colors.amber));
       _axisTextPaint.layout(minWidth: _dis, maxWidth: _dis);
+      if(i==0){
+_axisTextPaint.paint(canvas, Offset(startX-_axisTextPaint.width,startY));
+      }else{
       _axisTextPaint.paint(canvas,
           Offset(startX + _dis * i - _axisTextPaint.width / 2, startY)); //x轴
       _axisTextPaint.paint(
           canvas,
           Offset(startX - _axisTextPaint.width,
               startY - _dis * i - _axisTextPaint.height / 2)); //y轴
+      }
       _initPath(i, _dis,canvas);
      
     }
