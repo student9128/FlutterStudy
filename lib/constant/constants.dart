@@ -41,5 +41,5 @@ class Constants {
     'FlutterLogo',
     'Placeholder'
   ];
-  static List<String> advancedBtnList=['自定义组件-画线','测试'];
+  static List<String> advancedBtnList=['自定义组件-画线','测试','测试demo'];
 }
