@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/advanced/custom_widget_page.dart';
+import 'package:flutter_study_list/advanced/paf_viewer.dart';
 import 'package:flutter_study_list/advanced/test_demo_page.dart';
 import 'package:flutter_study_list/advanced/test_page.dart';
 import 'package:flutter_study_list/advanced/vh_scrollable_table_page.dart';
@@ -15,6 +16,7 @@ var customWidgetHandler = new Handler(handlerFunc:((context, parameters) => Cust
 var testPageHandler=Handler(handlerFunc:((context, parameters) => TestPage()));
 var testDemoPageHandler=Handler(handlerFunc:((context, parameters) => TableDemoPage()));
 var vhScrollableTableHandler=Handler(handlerFunc:((context, parameters) => VHScrollableTablePage()));
+var pdfViewerHandler=Handler(handlerFunc:((context, parameters) => PDFViewer(onDismissTapped:(){}, pdfText: "111111111111666666666666666666666661")));
 // void defineRoutes(FluroRouter router) {
 //   router.define("/text", handler: textHandler);
 

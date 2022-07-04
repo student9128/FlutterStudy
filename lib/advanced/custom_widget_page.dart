@@ -13,19 +13,19 @@ class _CustomWidgetPageState extends State<CustomWidgetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(title: Text('CustomWidget'),),
+     appBar: AppBar(title: const Text('CustomWidget'),),
      body: SingleChildScrollView(child:Column(
        children: [
          Container(
-           margin: EdgeInsets.only(left: 50),
+           margin: const EdgeInsets.only(left: 50),
            child:  CustomPaint(
            foregroundPainter: LineChatPainter(),
-           size: Size(300, 300),
+           size: const Size(300, 300),
          ),
          ),
          Container(
            color: Colors.grey,
-           margin: EdgeInsets.only(left: 20,top: 30),
+           margin: const EdgeInsets.only(left: 20,top: 30),
            child:  CustomPaint(
            foregroundPainter: CustomLine(),
            size: Size(MediaQuery.of(context).size.width-40, MediaQuery.of(context).size.width),

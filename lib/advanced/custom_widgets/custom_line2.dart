@@ -53,7 +53,7 @@ class CustomLine extends CustomPainter{
       canvas.drawLine(Offset(startX, startY - _dis * (i)),
           Offset(startX + 10, startY - _dis * (i)), _axisPaint);
       _axisTextPaint.text =
-          TextSpan(text: i.toString(), style: TextStyle(color: Colors.amber));
+          TextSpan(text: i.toString(), style: const TextStyle(color: Colors.amber));
       _axisTextPaint.layout(minWidth: _dis, maxWidth: _dis);
       if(i==0){
 _axisTextPaint.paint(canvas, Offset(startX-_axisTextPaint.width,startY));
@@ -91,7 +91,7 @@ _axisTextPaint.paint(canvas, Offset(startX-_axisTextPaint.width,startY));
     Path path = Path();
     for (var i = 0; i < length; i++) {
       var extractPath=list[i].extractPath(0, list[i].length,startWithMoveTo: true);
-      path.addPath(extractPath, Offset(0,0));
+      path.addPath(extractPath, const Offset(0,0));
     }
     _drawShader(canvas, path);
     canvas.drawPath(path, _linePaint);
