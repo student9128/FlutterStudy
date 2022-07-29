@@ -25,6 +25,10 @@ class Routes{
     for (var item in advancedList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
     }
+    List<Map<String, dynamic>> animList=combineRouteList2Map(animPageName, animHandler);
+    for (var item in animList) {
+      router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
+    }
     // for (var item in routeHandlerList) {
     //   if(item['title']!.toString()!='/'){
     //   router.define(item['title']!.toString(), handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);

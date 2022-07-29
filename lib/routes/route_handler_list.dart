@@ -8,3 +8,4 @@ var routeHandlerList = [
   {title: '/customWidget', handler: customWidgetHandler},
 ];
 List<Handler> advancedHandler=[customWidgetHandler,testPageHandler,testDemoPageHandler,vhScrollableTableHandler,pdfViewerHandler];
+List<Handler> animHandler=[basicAnimHandler];
