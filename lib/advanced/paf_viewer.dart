@@ -76,7 +76,8 @@ class _PDFViewerState extends State<PDFViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      appBar: AppBar(title:const Text('pdf') ,),
+      backgroundColor: Colors.black,
       body: Container(
         color: Colors.transparent,
         child: BackdropFilter(

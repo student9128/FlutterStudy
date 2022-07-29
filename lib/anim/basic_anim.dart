@@ -15,6 +15,9 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
   late Animation<double> _animation;
   late Animation<double> _animationRotate;
   late Animation<Offset> _animationOffset;
+  late Animation<double> _animationSize;
+  late Animation<Decoration> _animationDecoration;
+  
   ///0平移，1旋转，2缩放，3渐变
   int currentType = 0;
   @override
@@ -24,7 +27,11 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
       AnimationController(duration: Duration(seconds: 3), vsync: this)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
+            if(currentType!=4&&currentType!=5){
             _animationController?.reverse();
+            }else{
+              // _animationController?.repeat();
+            }
           } else if (status == AnimationStatus.dismissed) {
             _animationController?.forward();
           }
@@ -32,7 +39,15 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
   _animationRotate = Tween(begin: 0.0, end: 1.0 * pi).animate(_animationController!);
   _animationOffset = Tween(begin: Offset(0,0), end:Offset(0.7,.3)).animate(_animationController!);
   _animation = Tween(begin:1.0, end:0.5).animate(_animationController!);
-  //开始动画
+  _animationSize = Tween(begin:0.0, end:1.0).animate(_animationController!);
+  _animationDecoration = DecorationTween(
+            begin: BoxDecoration(color: Colors.blue, border: Border.all(style: BorderStyle.none),borderRadius: BorderRadius.circular(0)),
+            end: BoxDecoration(color: Colors.green,borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(color: Colors.amber,blurRadius: 10,spreadRadius: 3,offset: Offset(0,6)),
+            ]))
+        .animate(_animationController!);
+    //开始动画
   // _animationController?.forward();
   }
   Widget rectangleContainer = Container(width: 50,height: 50,color: Colors.red,);
@@ -59,8 +74,32 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
           opacity: _animation,
           child: rectangleContainer,
         );
+        case 4:
+        return SizeTransition(
+          sizeFactor: _animationSize,
+          axis: Axis.horizontal,
+          axisAlignment: -1,
+          child: rectangleContainer,
+        );
+        case 5:
+        return Container(
+          alignment: Alignment.center,
+          child: SizeTransition(
+          sizeFactor: _animationSize,
+          axis: Axis.vertical,
+          axisAlignment: -1,
+          child:Center(child:  rectangleContainer,),
+        ));
+           case 6:
+        return DecoratedBoxTransition(decoration: _animationDecoration, child:Container(child: rectangleContainer,
+        padding: EdgeInsets.all(10),) );
     }
     return rectangleContainer;
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController?.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -109,6 +148,36 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
                     });
                   },
                   child: Text('渐变')),
+              ElevatedButton(
+                  onPressed: () {
+                         this.setState(() {
+                      currentType=4;
+                    });
+                    Future.delayed(Duration(seconds: 1),(){
+                    _animationController?.forward();
+                    });
+                  },
+                  child: Text('横向出现')),
+              ElevatedButton(
+                  onPressed: () {
+                         this.setState(() {
+                      currentType=5;
+                    });
+                    Future.delayed(Duration(seconds: 1),(){
+                    _animationController?.forward();
+                    });
+                  },
+                  child: Text('竖向出现')),
+                      ElevatedButton(
+                  onPressed: () {
+                         this.setState(() {
+                      currentType=6;
+                    });
+                    Future.delayed(Duration(seconds: 1),(){
+                    _animationController?.forward();
+                    });
+                  },
+                  child: Text('decoration属性变化动画')),
               ElevatedButton(
                   onPressed: () {
                     _animationController?.stop(canceled: false);
