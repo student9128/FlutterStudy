@@ -29,6 +29,7 @@ class Routes{
     for (var item in animList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
     }
+    router.define('heroAnimSecondPage', handler: heroAnimSecondPageHandler);
     // for (var item in routeHandlerList) {
     //   if(item['title']!.toString()!='/'){
     //   router.define(item['title']!.toString(), handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);

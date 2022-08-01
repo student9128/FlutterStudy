@@ -6,6 +6,9 @@ import 'package:flutter_study_list/advanced/test_demo_page.dart';
 import 'package:flutter_study_list/advanced/test_page.dart';
 import 'package:flutter_study_list/advanced/vh_scrollable_table_page.dart';
 import 'package:flutter_study_list/anim/basic_anim.dart';
+import 'package:flutter_study_list/anim/hero_anim.dart';
+import 'package:flutter_study_list/anim/hero_anim_second_page.dart';
+import 'package:flutter_study_list/anim/list_anim.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
 import 'package:flutter_study_list/main_page.dart';
 var rootHandler = Handler(
@@ -22,6 +25,9 @@ var pdfViewerHandler=Handler(handlerFunc:((context, parameters) => PDFViewer(onD
 
 //Anim
 var basicAnimHandler=Handler(handlerFunc:((context, parameters) => BasicAnim()));
+var animatedListHandler = Handler(handlerFunc: ((context, parameters) => ListAnim()));
+var heroAnimHandler = Handler(handlerFunc: ((context, parameters) => HeroAnim()));
+var heroAnimSecondPageHandler = Handler(handlerFunc: ((context, parameters) => HeroAnimSecondPage()));
 // void defineRoutes(FluroRouter router) {
 //   router.define("/text", handler: textHandler);
 
