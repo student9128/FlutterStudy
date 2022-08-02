@@ -9,6 +9,8 @@ import 'package:flutter_study_list/anim/basic_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim_second_page.dart';
 import 'package:flutter_study_list/anim/list_anim.dart';
+import 'package:flutter_study_list/anim/share_anim_first_page.dart';
+import 'package:flutter_study_list/anim/tween_anim.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
 import 'package:flutter_study_list/main_page.dart';
 var rootHandler = Handler(
@@ -28,6 +30,8 @@ var basicAnimHandler=Handler(handlerFunc:((context, parameters) => BasicAnim()))
 var animatedListHandler = Handler(handlerFunc: ((context, parameters) => ListAnim()));
 var heroAnimHandler = Handler(handlerFunc: ((context, parameters) => HeroAnim()));
 var heroAnimSecondPageHandler = Handler(handlerFunc: ((context, parameters) => HeroAnimSecondPage()));
+var shareAnimPageHandler = Handler(handlerFunc: ((context, parameters) => ShareFirstPage()));
+var tweenForTextAnimHandler = Handler(handlerFunc: ((context, parameters) => TweenForTextAnim()));
 // void defineRoutes(FluroRouter router) {
 //   router.define("/text", handler: textHandler);
 

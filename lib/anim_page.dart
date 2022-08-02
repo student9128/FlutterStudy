@@ -29,7 +29,9 @@ class _AnimPageState extends State<AnimPage> {
           return index==_mList.length? Container(height: 16,):Container(
             margin:const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: ElevatedButton(
-                onPressed: () {Application.router.navigateTo(context,_mList[index]['pageName']!);},
+                onPressed: () {
+                  debugPrint("current======${_mList[index]['pageName']!}");
+                  Application.router.navigateTo(context,_mList[index]['pageName']!);},
                 child: Text(_mList[index]['title']!),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
