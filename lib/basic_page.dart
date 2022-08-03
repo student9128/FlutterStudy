@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
+import 'package:flutter_study_list/constant/route_names.dart';
+import 'package:flutter_study_list/routes/application.dart';
+import 'package:flutter_study_list/util/list_to_map_utils.dart';
 import 'constant/constants.dart';
 class BasicPage extends StatefulWidget {
   const BasicPage({Key? key}) : super(key: key);
@@ -10,10 +13,11 @@ class BasicPage extends StatefulWidget {
 }
 
 class _BasicPageState extends State<BasicPage> {
-  List<Widget> _listWidget = [];
+  List<Map<String, String>> _mList=[];
   @override
   initState() {
     super.initState();
+    _mList=combineList2Map(Constants.basicBtnList, basicPageName);
     // var random = Random.secure();
     // for (var i = 0; i < Constants.basicBtnList.length; i++) {
     //   _listWidget.add(ElevatedButton(
@@ -37,13 +41,16 @@ class _BasicPageState extends State<BasicPage> {
     //   ),
     // ),);
     return ListView.builder(
-        itemCount: Constants.basicBtnList.length+1,
+        itemCount: _mList.length+1,
         itemBuilder: ((context, index) {
-          return index==Constants.basicBtnList.length? Container(height: 16,):Container(
+          return index==_mList.length? Container(height: 16,):Container(
             margin:const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: ElevatedButton(
-                onPressed: () {},
-                child: Text(Constants.basicBtnList[index]),
+                onPressed: () {
+                  debugPrint("current======${_mList[index]['pageName']!}");
+                  // Application.router.navigateTo(context,_mList[index]['pageName']!);},
+                  Application.router.navigateTo(context,'/basicWidgetCommonPage?pageListIndex=$index');},
+                child: Text(_mList[index]['title']!),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
                         const EdgeInsets.symmetric(vertical: 16)),

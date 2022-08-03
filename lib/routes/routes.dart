@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/constant/constants.dart';
 import 'package:flutter_study_list/constant/route_names.dart';
+import 'package:flutter_study_list/not_found_page.dart';
 import 'package:flutter_study_list/routes/route_handlers.dart';
 import 'package:flutter_study_list/routes/route_handler_list.dart';
 import 'package:flutter_study_list/util/list_to_map_utils.dart';
@@ -18,9 +19,13 @@ class Routes{
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
       print("ROUTE WAS NOT FOUND !!!");
-      return;
+      return const NotFoundPage();
     });
      router.define(root, handler: rootHandler);
+     List<Map<String, dynamic>> basicList=combineRouteList2Map(basicPageName, basicHandler);
+    for (var item in basicList) {
+      router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
+    } 
     List<Map<String, dynamic>> advancedList=combineRouteList2Map(advancedPageName, advancedHandler);
     for (var item in advancedList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
@@ -30,6 +35,7 @@ class Routes{
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
     }
     router.define('heroAnimSecondPage', handler: heroAnimSecondPageHandler);
+    router.define("basicWidgetCommonPage", handler: basicWidgetCommonPageHandler,transitionType: TransitionType.inFromRight);
     // for (var item in routeHandlerList) {
     //   if(item['title']!.toString()!='/'){
     //   router.define(item['title']!.toString(), handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
