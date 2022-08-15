@@ -10,7 +10,24 @@ class CustomWidgetPage extends StatefulWidget {
   State<CustomWidgetPage> createState() => _CustomWidgetPageState();
 }
 
-class _CustomWidgetPageState extends State<CustomWidgetPage> {
+class _CustomWidgetPageState extends State<CustomWidgetPage> with SingleTickerProviderStateMixin{
+   late Animation<double> animation;
+  late AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+      controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animation = Tween<double>(begin: 0, end: 1.0).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.linear,
+    ))
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.repeat();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +54,17 @@ class _CustomWidgetPageState extends State<CustomWidgetPage> {
           height: 300,
           margin: const EdgeInsets.only(top:0),
           child: CustomPaint(
-            painter: CustomRectangle(),
+            painter: CustomRectangle(animation: animation.value),
           ),
          )
        
        ],
      ),) , 
     );
+  }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

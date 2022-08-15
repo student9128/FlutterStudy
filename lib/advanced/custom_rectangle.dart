@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CustomRectangle extends CustomPainter{
+  final double animation;
+  const CustomRectangle({Key? key,required this.animation});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -15,9 +19,9 @@ class CustomRectangle extends CustomPainter{
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: colors,
-      // transform: GradientRotation(
-      //   animation * 2 * pi,
-      // ), //改变 transform 值实现渐变旋转效果
+      transform: GradientRotation(
+        animation * 2 * pi,
+      ), //改变 transform 值实现渐变旋转效果
     ).createShader(rect)
     ..style = PaintingStyle.stroke
     ..strokeWidth = 8.0;
@@ -31,8 +35,8 @@ class CustomRectangle extends CustomPainter{
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant CustomRectangle oldDelegate) {
+    return oldDelegate.animation != animation;
   }
   
 }
