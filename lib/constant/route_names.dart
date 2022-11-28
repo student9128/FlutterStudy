@@ -29,3 +29,16 @@ List<String> advancedPageName = [
   'vhScrollableTable',
   'pdfViewer'
 ];
+///basicMaterialComponentsPage子页面
+Map<String, dynamic> subPageList = {
+  'basicMaterialComponentsPage': [
+    'scaffoldPage',
+    'appBarPage',
+    'bottomNavigationBarPage',
+    'tabBarPage',
+    'tabBarViewPage',
+    'materialAppPage',
+    'widgetsAppPage',
+    'drawerPage'
+  ]
+};

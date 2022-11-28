@@ -2,11 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/constant/constants.dart';
+import 'package:flutter_study_list/constant/route_names.dart';
+import 'package:flutter_study_list/routes/application.dart';
 
 class BasicWidgetCommonPage extends StatefulWidget {
-  const BasicWidgetCommonPage({ Key? key,required  this.pageListIndex }) : super(key: key);
+  const BasicWidgetCommonPage({ Key? key,required  this.pageListIndex,this.pageName='' }) : super(key: key);
   ///当前组件集合所在的索引
   final int pageListIndex;
+  final String pageName;
 
   @override
   State<BasicWidgetCommonPage> createState() => _BasicWidgetCommonPageState();
@@ -21,7 +24,7 @@ class _BasicWidgetCommonPageState extends State<BasicWidgetCommonPage> {
     if (widget.pageListIndex < Constants.basicWidgetPageList.length) {
       _list = Constants.basicWidgetPageList.elementAt(widget.pageListIndex);
     }
-    debugPrint('BasicWidgetCommonPage=======${_list.length}');
+    debugPrint('BasicWidgetCommonPage=======${_list.length},');
   }
   @override
   void dispose() {
@@ -45,7 +48,13 @@ class _BasicWidgetCommonPageState extends State<BasicWidgetCommonPage> {
                   : Container(
                       margin:const EdgeInsets.only(top: 16),
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            debugPrint(
+                                'BasicWidgetCommonPage=======${index},${widget.pageName}');
+                            debugPrint('needPage=/${subPageList[widget.pageName][index]}');
+                            Application.router.navigateTo(
+                                context, '/${subPageList[widget.pageName][index]}');
+                          },
                           child: Text(_list[index]),
                           style: ButtonStyle(
                               padding: MaterialStateProperty.all(

@@ -47,9 +47,12 @@ class _BasicPageState extends State<BasicPage> {
             margin:const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: ElevatedButton(
                 onPressed: () {
-                  debugPrint("current======${_mList[index]['pageName']!}");
+                  debugPrint("current===${_mList}\n pageName=${_mList[index]['pageName']!}");
                   // Application.router.navigateTo(context,_mList[index]['pageName']!);},
-                  Application.router.navigateTo(context,'/basicWidgetCommonPage?pageListIndex=$index');},
+                  var pageName = _mList[index]['pageName']!;
+                  pageName = pageName.substring(1,pageName.length);
+                  debugPrint('pageName=$pageName');
+                  Application.router.navigateTo(context,'/basicWidgetCommonPage?pageListIndex=$index&pageName=$pageName');},
                 child: Text(_mList[index]['title']!),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(

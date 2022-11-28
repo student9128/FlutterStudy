@@ -6,7 +6,7 @@ List<Map<String, String>> combineList2Map(
     List<String> key, List<String> value) {
   List<Map<String,
    String>> list = [];
-  if (key.length <= 0 || value.length <= 0) return [];
+  if (key.isEmpty || value.isEmpty) return [];
   if (key.length >= value.length) {
     for (int i = 0; i < value.length; i++) {
       Map<String, String> map = {};
@@ -28,7 +28,7 @@ List<Map<String, dynamic>> combineRouteList2Map(
     List<String> key, List<Handler> value) {
   List<Map<String,
    dynamic>> list = [];
-  if (key.length <= 0 || value.length <= 0) return [];
+  if (key.isEmpty || value.isEmpty) return [];
   if (key.length >= value.length) {
     for (int i = 0; i < value.length; i++) {
       Map<String, dynamic> map = {};
@@ -46,3 +46,4 @@ List<Map<String, dynamic>> combineRouteList2Map(
   }
   return list;
 }
+

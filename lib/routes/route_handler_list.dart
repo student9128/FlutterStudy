@@ -37,3 +37,7 @@ List<Handler> animHandler = [
   shareAnimPageHandler,
   tweenForTextAnimHandler
 ];
+
+List<Handler> basicMaterialComponentsPageHandlerList=[
+  tabBarPageHandler
+];
