@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study_list/advanced/custom_rectangle.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/custom_line.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/custom_line2.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/progress_ball.dart';
-import 'package:flutter_study_list/advanced/custom_widgets/wave_painter.dart';
 
 class CustomWidgetPage extends StatefulWidget {
   const CustomWidgetPage({ Key? key }) : super(key: key);
@@ -91,6 +89,8 @@ class _CustomWidgetPageState extends State<CustomWidgetPage> with TickerProvider
   @override
   void dispose() {
     controller.dispose();
+    wareController.dispose();
+    mainController.dispose();
     super.dispose();
   }
 }

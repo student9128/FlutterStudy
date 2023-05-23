@@ -27,7 +27,8 @@ List<String> advancedPageName = [
   'testPage',
   'testDemoPage',
   'vhScrollableTable',
-  'pdfViewer'
+  'pdfViewer',
+  'listviewAutoLoadMore'
 ];
 ///basicMaterialComponentsPage子页面
 Map<String, dynamic> subPageList = {

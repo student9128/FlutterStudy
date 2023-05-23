@@ -28,7 +28,8 @@ List<Handler> advancedHandler = [
   testPageHandler,
   testDemoPageHandler,
   vhScrollableTableHandler,
-  pdfViewerHandler
+  pdfViewerHandler,
+  listviewAutoLoadMoreHandler
 ];
 List<Handler> animHandler = [
   basicAnimHandler,
