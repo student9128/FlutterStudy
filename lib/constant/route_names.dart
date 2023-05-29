@@ -20,7 +20,8 @@ List<String> animPageName = [
   'animatedList',
   'heroAnim',
   'shareAnim',
-  'tweenForTextAnim'
+  'tweenForTextAnim',
+  'liveAnim'
 ];
 List<String> advancedPageName = [
   'customWidget',

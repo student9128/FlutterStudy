@@ -200,7 +200,8 @@ class Constants {
     'AnimatedList',
     'HeroAnim',
     'ShareAnim',
-    'TweenForTextAnim'
+    'TweenForTextAnim',
+    '仿直播间动画'
   ];
   static List<String> advancedBtnList = [
     '自定义组件-画线',

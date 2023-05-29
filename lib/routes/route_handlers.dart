@@ -10,6 +10,7 @@ import 'package:flutter_study_list/anim/basic_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim_second_page.dart';
 import 'package:flutter_study_list/anim/list_anim.dart';
+import 'package:flutter_study_list/anim/live_anim_page.dart';
 import 'package:flutter_study_list/anim/share_anim_first_page.dart';
 import 'package:flutter_study_list/anim/tween_anim.dart';
 import 'package:flutter_study_list/basic/basic_accessibility_page.dart';
@@ -68,6 +69,7 @@ var heroAnimHandler = Handler(handlerFunc: ((context, parameters) => const HeroA
 var heroAnimSecondPageHandler = Handler(handlerFunc: ((context, parameters) => const HeroAnimSecondPage()));
 var shareAnimPageHandler = Handler(handlerFunc: ((context, parameters) => const ShareFirstPage()));
 var tweenForTextAnimHandler = Handler(handlerFunc: ((context, parameters) => const TweenForTextAnim()));
+var liveAnimHandler = Handler(handlerFunc: ((context, parameters) => const LiveAnimPage()));
 
 //basicMaterialComponentsPageHandler 子页面
 var tabBarPageHandler = Handler(handlerFunc: (((context, parameters) => const TabBarPage())));

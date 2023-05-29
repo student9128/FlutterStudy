@@ -36,7 +36,8 @@ List<Handler> animHandler = [
   animatedListHandler,
   heroAnimHandler,
   shareAnimPageHandler,
-  tweenForTextAnimHandler
+  tweenForTextAnimHandler,
+  liveAnimHandler
 ];
 
 List<Handler> basicMaterialComponentsPageHandlerList=[
