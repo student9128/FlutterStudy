@@ -28,6 +28,7 @@ class _LiveAnimPageState extends State<LiveAnimPage> with TickerProviderStateMix
   late Animation<double> secondAnimation;
   ui.FrameInfo? frame;
   late ui.Image image;
+  List<ui.Image> list=[];
   bool hasInitialized=false;
   @override
   void initState() {
@@ -74,13 +75,20 @@ class _LiveAnimPageState extends State<LiveAnimPage> with TickerProviderStateMix
     });
   }
   _iniX() async {
-    ByteData logoBytes = await rootBundle.load("assets/images/test5.webp");
+    await loadImage("assets/images/test5.webp");
+    image=frame!.image;
+    list.add(image);
+    await loadImage("assets/images/test1.webp");
+    list.add(frame!.image);
+    hasInitialized = true;
+  }
+
+  Future<void> loadImage(String name) async {
+       ByteData logoBytes = await rootBundle.load(name);
     Uint8List logoUnit8 = logoBytes.buffer.asUint8List();
     ui.Codec codec = await ui.instantiateImageCodec(logoUnit8,
         targetWidth: 30, targetHeight: 30);
     frame = await codec.getNextFrame();
-    image=frame!.image;
-    hasInitialized = true;
   }
    _initData()async{
     ByteData logoBytes = await rootBundle.load("assets/images/test1.webp");
@@ -129,11 +137,11 @@ class _LiveAnimPageState extends State<LiveAnimPage> with TickerProviderStateMix
             //      ),
             //     ))
               Container(
-              width: 300,
+              width: 125,
               height: 300,
               color: Colors.green.withOpacity(0.8),
               margin: const EdgeInsets.only(top: 20, bottom: 20),
-              child: frame != null ? CustomLiveAnim(image: image) : SizedBox(),
+              child: list.length>=2 ? CustomLiveAnim(image: list) : SizedBox(),
             ),
             
             // Container(

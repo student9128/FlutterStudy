@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 class CustomLiveAnim extends StatefulWidget {
   const CustomLiveAnim({ Key? key,required this.image }) : super(key: key);
-final ui.Image image;
+final List<ui.Image> image;
   @override
   State<CustomLiveAnim> createState() => _CustomLiveAnimState();
 }
@@ -50,7 +51,7 @@ class CustomLiveAnimPainter extends CustomPainter{
   final double progress;
   // 波浪的曲度
   final double waveHeight;
-  final ui.Image image;
+  final List<ui.Image> image;
   CustomLiveAnimPainter({required this.progress,required this.image,this.waveHeight = 24});
   @override
   void paint(Canvas canvas, Size size) {
@@ -81,6 +82,49 @@ class CustomLiveAnimPainter extends CustomPainter{
     // double wavePointY = (1 - progress) * radius * 2;
     double wavePointX=(1-0.5)*radius*2;//改为纵向的
     debugPrint('centerX=${center.dx},centerY=${center.dy},wavePointX=${wavePointX}');
+
+//每个点相隔一个radius
+    double y1 = size.height;
+    double cy1 = size.height - 2 / radius;
+    double count = size.height / radius;
+    double y2 = size.height - radius;
+    int cCount=count.ceil();
+    List<Offset> list=[];
+    List<Offset> cList=[];
+    for(int i=0;i<=cCount;i++){
+      list.add(Offset(wavePointX,size.height-i*radius));
+    }
+    for(int i=0;i<cCount;i++){
+      if(i%2==0){
+      cList.add(Offset(wavePointX-waveHeight,size.height-(i+0.5)*radius));
+      }else{
+      cList.add(Offset(wavePointX+waveHeight,size.height-(i+0.5)*radius));
+      }
+    }
+    debugPrint('count=$count,cCount=$cCount,cList.size=${cList.length},list.size=${list.length},cC0=${cList[0]},${cList[1]},list=${list[0]},${list[1]},${list[2]},radius=$radius');
+    Path _path=Path();
+    _path.moveTo(wavePointX, y1);
+    for(int i=1;i<list.length;i++){
+      _path.quadraticBezierTo(cList[i-1].dx, cList[i-1].dy, list[i].dx, list[i].dy);
+    }
+     canvas.drawRect(Rect.fromCenter(center: cList[0], width: 10, height: 10), paint..color=Colors.yellowAccent);
+     canvas.drawRect(Rect.fromCenter(center: cList[1], width: 10, height: 10), paint..color=Colors.yellowAccent);
+     canvas.drawRect(Rect.fromCenter(center: cList[2], width: 10, height: 10), paint..color=Colors.yellowAccent);
+     canvas.drawRect(Rect.fromCenter(center: list[0], width: 10, height: 10), paint..color=Colors.tealAccent);
+     canvas.drawRect(Rect.fromCenter(center: list[1], width: 10, height: 10), paint..color=Colors.tealAccent);
+     canvas.drawRect(Rect.fromCenter(center: list[2], width: 10, height: 10), paint..color=Colors.tealAccent);
+     canvas.drawRect(Rect.fromCenter(center: list[3], width: 10, height: 10), paint..color=Colors.tealAccent);
+    canvas.drawPath(_path, paint..color=Colors.indigo);
+     var _measure=_path.computeMetrics().first;
+     final _position = _measure.getTangentForOffset(_measure.length * progress);
+     //  final position = measure.getTangentForOffset(offsetX);
+     if(_position!=null){
+       // debugPrint('position====${position.position},point1=$point1');
+       canvas.drawImage(image[0], _position.position-Offset(image[0].width/2.0,image[0].height/2.0), Paint()..isAntiAlias=true);
+       canvas.drawLine(Offset(size.width/2,0), Offset(size.width/2,size.height/2), paint);
+       canvas.drawLine(Offset(0,size.height/2), Offset(size.width/2,size.height/2), paint);
+     }
+
     
 
     // point3为中心点，波浪的直径为圆的半径，一共5个点，加上两个闭环点（p六、p7）
@@ -89,6 +133,8 @@ class CustomLiveAnimPainter extends CustomPainter{
     Offset point3 = Offset(wavePointX,center.dy - radius);
     Offset point4 = Offset(wavePointX,center.dy);
     Offset point5 = Offset(wavePointX,center.dy + radius);
+    canvas.drawRect(Rect.fromCenter(center: Offset(wavePointX,0), width: 20, height: 20), paint..color=Colors.purpleAccent);
+    canvas.drawRect(Rect.fromCenter(center: Offset(wavePointX,size.height), width: 20, height: 20), paint..color=Colors.pink);
     canvas.drawRect(Rect.fromCenter(center: point1, width: 10, height: 10), paint..color=Colors.blue);
     canvas.drawRect(Rect.fromCenter(center: point2, width: 10, height: 10), paint..color=Colors.white);
     canvas.drawRect(Rect.fromCenter(center: point3, width: 10, height: 10), paint..color=Colors.yellow);
@@ -149,7 +195,7 @@ class CustomLiveAnimPainter extends CustomPainter{
       //  final position = measure.getTangentForOffset(offsetX);
     if(position!=null){
       debugPrint('position====${position.position},point1=$point1');
-    canvas.drawImage(image, position.position-Offset(image.width/2.0,image.height/2.0), Paint()..isAntiAlias=true);
+    canvas.drawImage(image[1], position.position-Offset(image[1].width/2.0,image[1].height/2.0), Paint()..isAntiAlias=true);
     canvas.drawLine(Offset(size.width/2,0), Offset(size.width/2,size.height/2), paint);
     canvas.drawLine(Offset(0,size.height/2), Offset(size.width/2,size.height/2), paint);
     }
