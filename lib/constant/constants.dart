@@ -209,6 +209,16 @@ class Constants {
     '测试demo',
     '可以上下左右滑动的表格',
     'pdfViewer',
-    'ListView自动加载数据'
+    'ListView自动加载数据',
+    '百度地图'
+  ];
+  static List<String> baiduMapList = [
+    '单次定位',
+    '连续定位',
+    '圆形地理围栏',
+    '多边形地理围栏',
+    '监听设备朝向',
+    '地图类型示例',
+    '百度地图调试页面'
   ];
 }

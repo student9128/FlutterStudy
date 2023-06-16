@@ -2,7 +2,7 @@
     package="com.kevin.flutter_study_list">
    <application
         android:label="flutter_study_list"
-        android:name="${applicationName}"
+        android:name="com.kevin.flutter_study_list.BaseApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -20,6 +20,9 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <meta-data
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="Tv0OGeYojX39AZ2puHB0eYfkNQqMUkY3" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

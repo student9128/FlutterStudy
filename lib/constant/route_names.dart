@@ -29,7 +29,8 @@ List<String> advancedPageName = [
   'testDemoPage',
   'vhScrollableTable',
   'pdfViewer',
-  'listviewAutoLoadMore'
+  'listviewAutoLoadMore',
+  'baiduMapPage',
 ];
 ///basicMaterialComponentsPage子页面
 Map<String, dynamic> subPageList = {
@@ -44,3 +45,12 @@ Map<String, dynamic> subPageList = {
     'drawerPage'
   ]
 };
+List<String> baiduMapPageName = [
+  'singleLocationPage',
+  'seriesLocationPage',
+  'circleGeoFencePage',
+  'polygonGeoFencePage',
+  'headingLocationPage',
+  'baiduMapTypePage',
+  'baiduMapTestPage'
+];

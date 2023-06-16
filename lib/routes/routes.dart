@@ -35,6 +35,10 @@ class Routes{
     for (var item in animList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
     }
+    List<Map<String, dynamic>> baiduMapList=combineRouteList2Map(baiduMapPageName, baiduMapHandlerList);
+    for (var item in baiduMapList) {
+      router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
+    }
     router.define('heroAnimSecondPage', handler: heroAnimSecondPageHandler);
     router.define("basicWidgetCommonPage", handler: basicWidgetCommonPageHandler,transitionType: TransitionType.inFromRight);
     router.define("tabBarPage", handler: tabBarPageHandler,transitionType: TransitionType.inFromRight);

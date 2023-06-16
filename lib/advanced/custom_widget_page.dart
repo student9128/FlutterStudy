@@ -53,7 +53,7 @@ class _CustomWidgetPageState extends State<CustomWidgetPage> with TickerProvider
            margin: const EdgeInsets.only(left: 50),
            child:  CustomPaint(
            foregroundPainter: LineChatPainter(),
-           size: const Size(300, 300),
+           size: Size(300, 300),
          ),
          ),
          Container(

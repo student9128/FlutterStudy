@@ -1,5 +1,13 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_list/advanced/baidu_map_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/baid_map_test_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/baidu_map_type_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/circle_geo_fence_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/heading_location_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/polygon_geo_fence_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/series_location_page.dart';
+import 'package:flutter_study_list/advanced/baidumap/single_location_page.dart';
 import 'package:flutter_study_list/advanced/custom_widget_page.dart';
 import 'package:flutter_study_list/advanced/list_view_auto_loadmore_page.dart';
 import 'package:flutter_study_list/advanced/paf_viewer.dart';
@@ -62,6 +70,14 @@ var testDemoPageHandler=Handler(handlerFunc:((context, parameters) => TableDemoP
 var vhScrollableTableHandler=Handler(handlerFunc:((context, parameters) => const VHScrollableTablePage()));
 var pdfViewerHandler=Handler(handlerFunc:((context, parameters) => PDFViewer(onDismissTapped:(){}, pdfText: "111111111111666666666666666666666661")));
 var listviewAutoLoadMoreHandler=Handler(handlerFunc:((context, parameters) => const ListViewAutoLoadMorePage()));
+var baiduMapHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapPage()));
+var singleLocationHandler=Handler(handlerFunc:((context, parameters) => const SingleLocationPage()));
+var seriesLocationHandler=Handler(handlerFunc:((context, parameters) => const SeriesLocationPage()));
+var circleGeoFenceHandler=Handler(handlerFunc:((context, parameters) => const CircleGeoFencePage()));
+var polygonGeoFenceHandler=Handler(handlerFunc:((context, parameters) => const PolygonGeoFencePage()));
+var headingLocationHandler=Handler(handlerFunc:((context, parameters) => const HeadingLocationPage()));
+var baiduMapTypeHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapTypePage()));
+var baiduMapTestHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapTestPage()));
 //Anim
 var basicAnimHandler=Handler(handlerFunc:((context, parameters) => const BasicAnim()));
 var animatedListHandler = Handler(handlerFunc: ((context, parameters) => const ListAnim()));

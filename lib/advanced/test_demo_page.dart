@@ -95,7 +95,7 @@ class _TableDemoPageState extends State<TableDemoPage>
         ),
         //标题右侧显示的按钮组
         actions: [
-          FlatButton(
+          OutlinedButton(
             onPressed: () => doSearch(),
             child: Container(
               alignment: Alignment.centerRight,

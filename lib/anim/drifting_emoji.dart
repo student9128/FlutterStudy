@@ -151,7 +151,7 @@ class DriftingEmojiPainter extends CustomPainter {
     // 加载Asset图片
     // final image =
     //     await loadImageFromAsset('assets/images/test1.webp');
-    canvas.drawImage(image, const Offset(0, 0), paint);
+    canvas.drawImage(image, Offset(0, 0), paint);
 
     canvas.restore();
   }

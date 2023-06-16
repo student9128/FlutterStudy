@@ -29,7 +29,9 @@ List<Handler> advancedHandler = [
   testDemoPageHandler,
   vhScrollableTableHandler,
   pdfViewerHandler,
-  listviewAutoLoadMoreHandler
+  listviewAutoLoadMoreHandler,
+  baiduMapHandler,
+
 ];
 List<Handler> animHandler = [
   basicAnimHandler,
@@ -42,4 +44,13 @@ List<Handler> animHandler = [
 
 List<Handler> basicMaterialComponentsPageHandlerList=[
   tabBarPageHandler
+];
+List<Handler> baiduMapHandlerList=[
+  singleLocationHandler,
+  seriesLocationHandler,
+  circleGeoFenceHandler,
+  polygonGeoFenceHandler,
+  headingLocationHandler,
+  baiduMapTypeHandler,
+  baiduMapTestHandler
 ];

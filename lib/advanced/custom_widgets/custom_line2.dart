@@ -91,7 +91,7 @@ _axisTextPaint.paint(canvas, Offset(startX-_axisTextPaint.width,startY));
     Path path = Path();
     for (var i = 0; i < length; i++) {
       var extractPath=list[i].extractPath(0, list[i].length,startWithMoveTo: true);
-      path.addPath(extractPath, const Offset(0,0));
+      path.addPath(extractPath, Offset(0,0));
     }
     _drawShader(canvas, path);
     canvas.drawPath(path, _linePaint);

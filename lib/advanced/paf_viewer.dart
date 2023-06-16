@@ -173,7 +173,7 @@ class _PDFViewerState extends State<PDFViewer> {
                           bottom: 0,
                           width: MediaQuery.of(context).size.width,
                           child: Center(
-                            child: TextButton(
+                            child: ElevatedButton(
                               child: const Text(
                                 "Dismiss",
                                 style: TextStyle(color: Colors.white),
