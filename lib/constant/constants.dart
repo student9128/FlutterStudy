@@ -210,7 +210,12 @@ class Constants {
     '可以上下左右滑动的表格',
     'pdfViewer',
     'ListView自动加载数据',
-    '百度地图'
+    '百度地图',
+    '高德地图'
+  ];
+  static List<String> aMapList=[
+    '高德定位',
+    '高德地图'
   ];
   static List<String> baiduMapList = [
     '单次定位',

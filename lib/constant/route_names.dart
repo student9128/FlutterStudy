@@ -31,6 +31,7 @@ List<String> advancedPageName = [
   'pdfViewer',
   'listviewAutoLoadMore',
   'baiduMapPage',
+  'gaoDeMapPage'
 ];
 ///basicMaterialComponentsPage子页面
 Map<String, dynamic> subPageList = {
@@ -53,4 +54,8 @@ List<String> baiduMapPageName = [
   'headingLocationPage',
   'baiduMapTypePage',
   'baiduMapTestPage'
+];
+List<String> aMapPageName=[
+  'AMapLocationPage',
+  'AMapPage'
 ];

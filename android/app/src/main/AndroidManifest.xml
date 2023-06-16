@@ -1,5 +1,44 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kevin.flutter_study_list">
+
+<!-- 地图SDK（包含其搜索功能）需要的基础权限 -->
+     
+<!--允许访问网络，必选权限-->
+<uses-permission android:name="android.permission.INTERNET" />  
+
+<!--允许获取精确位置，精准定位必选-->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> 
+ 
+<!--允许获取粗略位置，粗略定位必选-->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
+
+<!--允许获取设备和运营商信息，用于问题排查和网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />    
+
+<!--允许获取网络状态，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+
+<!--允许获取wifi网络信息，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+
+<!--允许获取wifi状态改变，用于网络定位（无gps情况下的定位），若需网络定位功能则必选-->
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> 
+
+<!--后台获取位置信息，若需后台定位则必选-->
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> 
+
+<!--用于申请调用A-GPS模块,卫星定位加速-->
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> 
+
+<!--允许写设备缓存，用于问题排查-->
+<uses-permission android:name="android.permission.WRITE_SETTINGS" />  
+
+<!--允许写入扩展存储，用于写入缓存定位数据-->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+
+<!--允许读设备等信息，用于问题排查-->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> 
+
    <application
         android:label="flutter_study_list"
         android:name="com.kevin.flutter_study_list.BaseApplication"
@@ -17,17 +56,19 @@
                  while the Flutter UI initializes. After that, this theme continues
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
-              android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
-              />
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"
+            />
             <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
                 android:value="Tv0OGeYojX39AZ2puHB0eYfkNQqMUkY3" />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 配置定位Service -->
+        <service android:name="com.amap.api.location.APSService" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

@@ -31,6 +31,7 @@ List<Handler> advancedHandler = [
   pdfViewerHandler,
   listviewAutoLoadMoreHandler,
   baiduMapHandler,
+  gaoDeMapHandler
 
 ];
 List<Handler> animHandler = [
@@ -53,4 +54,8 @@ List<Handler> baiduMapHandlerList=[
   headingLocationHandler,
   baiduMapTypeHandler,
   baiduMapTestHandler
+];
+List<Handler> aMapHandlerList=[
+  aMapLocationHandler,
+  aMapHandler
 ];

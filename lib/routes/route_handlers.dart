@@ -1,5 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_study_list/advanced/amap/amap_location_page.dart';
+import 'package:flutter_study_list/advanced/amap/amap_map_page.dart';
 import 'package:flutter_study_list/advanced/baidu_map_page.dart';
 import 'package:flutter_study_list/advanced/baidumap/baid_map_test_page.dart';
 import 'package:flutter_study_list/advanced/baidumap/baidu_map_type_page.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_study_list/advanced/baidumap/polygon_geo_fence_page.dart
 import 'package:flutter_study_list/advanced/baidumap/series_location_page.dart';
 import 'package:flutter_study_list/advanced/baidumap/single_location_page.dart';
 import 'package:flutter_study_list/advanced/custom_widget_page.dart';
+import 'package:flutter_study_list/advanced/gaode_map_page.dart';
 import 'package:flutter_study_list/advanced/list_view_auto_loadmore_page.dart';
 import 'package:flutter_study_list/advanced/paf_viewer.dart';
 import 'package:flutter_study_list/advanced/test_demo_page.dart';
@@ -78,6 +81,9 @@ var polygonGeoFenceHandler=Handler(handlerFunc:((context, parameters) => const P
 var headingLocationHandler=Handler(handlerFunc:((context, parameters) => const HeadingLocationPage()));
 var baiduMapTypeHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapTypePage()));
 var baiduMapTestHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapTestPage()));
+var gaoDeMapHandler=Handler(handlerFunc:((context, parameters) => const GaoDeMapPage()));
+var aMapLocationHandler=Handler(handlerFunc:((context, parameters) => const AMapLocationPage()));
+var aMapHandler=Handler(handlerFunc:((context, parameters) => const AMapPage()));
 //Anim
 var basicAnimHandler=Handler(handlerFunc:((context, parameters) => const BasicAnim()));
 var animatedListHandler = Handler(handlerFunc: ((context, parameters) => const ListAnim()));
