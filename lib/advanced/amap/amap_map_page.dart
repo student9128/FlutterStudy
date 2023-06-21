@@ -1,3 +1,7 @@
+import 'dart:math';
+import 'dart:typed_data';
+import 'dart:ui';
+
 import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:amap_flutter_location/amap_location_option.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +10,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:amap_flutter_map/amap_flutter_map.dart';
 import 'package:amap_flutter_base/amap_flutter_base.dart';
 import 'package:flutter_study_list/advanced/amap/constants.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/custom_circle.dart';
 
 class AMapPage extends StatefulWidget {
   const AMapPage({super.key});
@@ -17,6 +22,7 @@ class AMapPage extends StatefulWidget {
 class _AMapPageState extends State<AMapPage> {
   late AMapController mapController;
   AMapFlutterLocation mapLocationPlugin = AMapFlutterLocation();
+  Set<Marker> markerList={};
   @override
   void initState() {
     super.initState();
@@ -29,6 +35,8 @@ class _AMapPageState extends State<AMapPage> {
       mapController.moveCamera(CameraUpdate.newLatLng(LatLng(
           double.parse('${result['latitude'] ?? 0}'),
           double.parse('${result['longitude'] ?? 0}'))));
+      addRandomMarker(double.parse('${result['latitude'] ?? 0}'),
+          double.parse('${result['longitude'] ?? 0}'));
     });
   }
   @override
@@ -36,6 +44,71 @@ class _AMapPageState extends State<AMapPage> {
     super.dispose();
     mapLocationPlugin.stopLocation();
     mapLocationPlugin.destroy();
+  }
+  Future<Uint8List> createImage() async{
+    double pixelRatio = window.devicePixelRatio;
+  final recorder = PictureRecorder();
+    final canvas = Canvas(recorder);
+      final size = Size(28*pixelRatio,30*pixelRatio);
+  final width = size.width * pixelRatio;
+  final height = size.height * pixelRatio;
+  final paintBounds = Rect.fromPoints(Offset.zero, Offset(width, height));
+  final clipRect = Rect.fromLTWH(0, 0, width, height);
+
+  canvas.clipRect(clipRect);
+  CustomCirclePainter painter=CustomCirclePainter(text:'测试',backgroundColor: Colors.primaries
+                        .elementAt(Random.secure()
+                            .nextInt(Colors.primaries.length)),radius: 12*pixelRatio,);
+  painter.paint(canvas, size);
+    final picture = recorder.endRecording();
+  final image = await picture.toImage(size.width.toInt(), size.height.toInt());
+  final byteData = await image.toByteData(format: ImageByteFormat.png);
+    return byteData!.buffer.asUint8List();
+  }
+    addRandomMarker(double lat, double lon) async {
+    if (markerList.isNotEmpty) {
+      markerList.clear();
+    }
+    List<List<double>> points =
+        generateRandomPoints(lat, lon, 3000, Random().nextInt(20) + 20);
+    for (List<double> p in points) {
+      // debugPrint('p==${p[0]}, ${p[1]}');
+      Uint8List markerData = await createImage();
+      // Markeer
+      Marker marker = Marker(position: LatLng(p[0], p[1]),
+      icon: BitmapDescriptor.fromBytes(markerData));
+      markerList.add(marker);
+      // BMFMarker marker1 = BMFMarker.iconData(
+      //     position: BMFCoordinate(p[0], p[1]),
+      //     iconData: markerData,
+      //     title: 'carMarker',
+      //     identifier: 'car_marker');
+      // markerList.add(marker1);
+      // mapController.addMarker(marker1);
+    }
+    setState(() {
+      
+    });
+  }
+  generateRandomPoints(double lat, double lng, double radius, int count) {
+    // Convert radius from meters to degrees
+    double radiusInDegrees = radius / 111000;
+
+    List<List<double>> points = [];
+
+    for (int i = 0; i < count; i++) {
+      // Generate random angles
+      double randomAngle = Random().nextDouble() * pi * 2;
+      double randomRadius = sqrt(Random().nextDouble()) * radiusInDegrees;
+
+      // Calculate the new point's coordinates
+      double newLat = lat + (randomRadius * cos(randomAngle));
+      double newLng = lng + (randomRadius * sin(randomAngle));
+
+      points.add([newLat, newLng]);
+    }
+
+    return points;
   }
   void setLocationOption(){
     if (null != mapLocationPlugin) {
@@ -128,7 +201,8 @@ class _AMapPageState extends State<AMapPage> {
         circleFillColor: Colors.lightBlue,
         circleStrokeColor: Colors.blue,
         circleStrokeWidth: 1,
-      )
+      ),
+      markers:markerList
             ),
           )
         ],

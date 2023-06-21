@@ -10,6 +10,7 @@ import 'package:flutter_study_list/advanced/baidumap/heading_location_page.dart'
 import 'package:flutter_study_list/advanced/baidumap/polygon_geo_fence_page.dart';
 import 'package:flutter_study_list/advanced/baidumap/series_location_page.dart';
 import 'package:flutter_study_list/advanced/baidumap/single_location_page.dart';
+import 'package:flutter_study_list/advanced/custom_icon_page.dart';
 import 'package:flutter_study_list/advanced/custom_widget_page.dart';
 import 'package:flutter_study_list/advanced/gaode_map_page.dart';
 import 'package:flutter_study_list/advanced/list_view_auto_loadmore_page.dart';
@@ -68,6 +69,7 @@ var basicAccessibilityPageHandler= Handler(handlerFunc:((context, parameters) =>
 //Advanced
 var textHandler= Handler(handlerFunc:((context, parameters) => const TextPage()));
 var customWidgetHandler = Handler(handlerFunc:((context, parameters) => const CustomWidgetPage()));
+var customIconWidgetHandler = Handler(handlerFunc:((context, parameters) => const CustomIconPage()));
 var testPageHandler=Handler(handlerFunc:((context, parameters) => const TestPage()));
 var testDemoPageHandler=Handler(handlerFunc:((context, parameters) => TableDemoPage()));
 var vhScrollableTableHandler=Handler(handlerFunc:((context, parameters) => const VHScrollableTablePage()));

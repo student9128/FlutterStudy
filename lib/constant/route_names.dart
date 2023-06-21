@@ -25,11 +25,12 @@ List<String> animPageName = [
 ];
 List<String> advancedPageName = [
   'customWidget',
+  'customIconWidget',
   'testPage',
   'testDemoPage',
   'vhScrollableTable',
   'pdfViewer',
-  'listviewAutoLoadMore',
+  'listViewAutoLoadMore',
   'baiduMapPage',
   'gaoDeMapPage'
 ];

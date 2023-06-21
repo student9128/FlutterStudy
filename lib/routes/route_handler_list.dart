@@ -25,6 +25,7 @@ List<Handler> basicHandler = [
 ];
 List<Handler> advancedHandler = [
   customWidgetHandler,
+  customIconWidgetHandler,
   testPageHandler,
   testDemoPageHandler,
   vhScrollableTableHandler,
