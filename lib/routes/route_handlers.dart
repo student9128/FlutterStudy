@@ -18,6 +18,7 @@ import 'package:flutter_study_list/advanced/paf_viewer.dart';
 import 'package:flutter_study_list/advanced/test_demo_page.dart';
 import 'package:flutter_study_list/advanced/test_page.dart';
 import 'package:flutter_study_list/advanced/vh_scrollable_table_page.dart';
+import 'package:flutter_study_list/advanced/vh_scrollable_table_page_expanded.dart';
 import 'package:flutter_study_list/anim/basic_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim.dart';
 import 'package:flutter_study_list/anim/hero_anim_second_page.dart';
@@ -73,6 +74,7 @@ var customIconWidgetHandler = Handler(handlerFunc:((context, parameters) => cons
 var testPageHandler=Handler(handlerFunc:((context, parameters) => const TestPage()));
 var testDemoPageHandler=Handler(handlerFunc:((context, parameters) => TableDemoPage()));
 var vhScrollableTableHandler=Handler(handlerFunc:((context, parameters) => const VHScrollableTablePage()));
+var vhScrollableTableExpandedHandler=Handler(handlerFunc:((context, parameters) => const VHScrollableTableExpandedPage()));
 var pdfViewerHandler=Handler(handlerFunc:((context, parameters) => PDFViewer(onDismissTapped:(){}, pdfText: "111111111111666666666666666666666661")));
 var listviewAutoLoadMoreHandler=Handler(handlerFunc:((context, parameters) => const ListViewAutoLoadMorePage()));
 var baiduMapHandler=Handler(handlerFunc:((context, parameters) => const BaiduMapPage()));

@@ -29,6 +29,7 @@ List<Handler> advancedHandler = [
   testPageHandler,
   testDemoPageHandler,
   vhScrollableTableHandler,
+  vhScrollableTableExpandedHandler,
   pdfViewerHandler,
   listviewAutoLoadMoreHandler,
   baiduMapHandler,

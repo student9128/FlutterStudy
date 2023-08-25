@@ -29,6 +29,7 @@ List<String> advancedPageName = [
   'testPage',
   'testDemoPage',
   'vhScrollableTable',
+  'vhScrollableTableExpanded',
   'pdfViewer',
   'listViewAutoLoadMore',
   'baiduMapPage',

@@ -209,6 +209,7 @@ class Constants {
     '测试',
     '测试demo',
     '可以上下左右滑动的表格',
+    '可以上下左右滑动的表格Expanded',
     'pdfViewer',
     'ListView自动加载数据',
     '百度地图',
