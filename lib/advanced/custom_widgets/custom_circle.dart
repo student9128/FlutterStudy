@@ -6,16 +6,24 @@ import 'package:flutter/material.dart';
 class CustomCirclePainter extends CustomPainter {
   final TextStyle? textStyle;
   final Color? backgroundColor;
+  final Color? reflectionColor;
   final double radius;
   final String text;
   final bool showBorder;
+  final Color? borderColor;
+  final double? borderWidth;
+  final bool showReflection;
   CustomCirclePainter(
-      {this.textStyle,
+      {required this.text,this.textStyle,
       this.backgroundColor,
+      this.reflectionColor,
       this.radius = 0,
       this.showBorder=false,
-      required this.text});
-  late Paint _backgroundPaint,_reflectionPaint;
+      this.borderColor,
+      this.borderWidth,
+      this.showReflection=true,
+      });
+  late Paint _backgroundPaint,_reflectionPaint,_borderPaint;
   late TextPainter _textPaint;
   late TextStyle _textStyle;
   final Path _path = Path();
@@ -31,8 +39,13 @@ class CustomCirclePainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
     _reflectionPaint = Paint()
-      ..color = Colors.grey.withOpacity(0.5)
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 1);
+      ..color = reflectionColor??Colors.grey.withOpacity(0.5)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1);
+      _borderPaint = Paint()
+      ..color = borderColor ?? Colors.green
+      ..style = PaintingStyle.stroke
+      ..strokeWidth=borderWidth??1
+      ..isAntiAlias = true;
     _textPaint = TextPainter(textAlign: TextAlign.center, ellipsis: '.')
       ..textDirection = TextDirection.ltr;
     _textStyle = textStyle ??
@@ -65,10 +78,6 @@ class CustomCirclePainter extends CustomPainter {
     double temp=_radius*sin(pi/12);
     double tempY=_radius*cos(pi/12);
     debugPrint('temp=$temp,$tempY');
-    _path.moveTo(size.width/2, size.height-3);
-    _path.lineTo(centerX-temp, centerY+tempY);
-    _path.lineTo(centerX+temp, centerY+tempY);
-    _path.close();
     var rect=Rect.fromCenter(center: Offset(centerX, size.height-3), width: 20, height: 6);
 
     double startAngle=pi/12+pi/2;

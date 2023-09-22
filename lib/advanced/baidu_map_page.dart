@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bmflocation/flutter_bmflocation.dart';
 import 'package:flutter_study_list/constant/constants.dart';
 import 'package:flutter_study_list/constant/route_names.dart';
 import 'package:flutter_study_list/routes/application.dart';
@@ -25,7 +26,10 @@ class _BaiduMapPageState extends State<BaiduMapPage> {
   }
   initBaiduMap() async {
     BMFMapSDK.setAgreePrivacy(true);
+    LocationFlutterPlugin baiduLocationPlugin = LocationFlutterPlugin();
+    baiduLocationPlugin.setAgreePrivacy(true);
     await BMFAndroidVersion.initAndroidVersion();
+    BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
     // BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
     Map? map = await BMFMapVersion.nativeMapVersion;
     print('获取原生地图版本号：$map');
