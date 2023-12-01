@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kevin.flutter_study_list">
 
 <!-- 地图SDK（包含其搜索功能）需要的基础权限 -->
@@ -31,18 +32,21 @@
 <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> 
 
 <!--允许写设备缓存，用于问题排查-->
-<uses-permission android:name="android.permission.WRITE_SETTINGS" />  
+<uses-permission android:name="android.permission.WRITE_SETTINGS"
+    tools:ignore="ProtectedPermissions" />
 
 <!--允许写入扩展存储，用于写入缓存定位数据-->
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    tools:ignore="ScopedStorage" />
 
 <!--允许读设备等信息，用于问题排查-->
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> 
 
    <application
-        android:label="flutter_study_list"
+        android:label="@string/app_name"
         android:name="com.kevin.flutter_study_list.BaseApplication"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       tools:ignore="Instantiatable">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -59,14 +63,14 @@
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme"
             />
-            <meta-data
-                android:name="com.baidu.lbsapi.API_KEY"
-                android:value="Tv0OGeYojX39AZ2puHB0eYfkNQqMUkY3" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+       <meta-data
+           android:name="com.baidu.lbsapi.API_KEY"
+           android:value="Tv0OGeYojX39AZ2puHB0eYfkNQqMUkY3" />
         <!-- 配置定位Service -->
         <service android:name="com.amap.api.location.APSService" />
         <!-- Don't delete the meta-data below.
