@@ -26,10 +26,10 @@ class _BaiduMapTestPageState extends State<BaiduMapTestPage> {
     super.initState();
     requestPermission();
     BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
-    // _handleLocation();
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   startLocation();
-    // });
+    _handleLocation();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      startLocation();
+    });
   }
 
   // 动态申请定位权限
