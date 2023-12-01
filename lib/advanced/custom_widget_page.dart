@@ -1,6 +1,8 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/custom_anim_circle.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/custom_line.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/custom_line2.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/progress_ball.dart';
@@ -21,10 +23,13 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
   late AnimationController wareController;
   late AnimationController mainController;
   late AnimationController secondController;
+  late AnimationController animCircleController;
 
   late Animation<double> waveAnimation;
   late Animation<double> mainAnimation;
   late Animation<double> secondAnimation;
+  late Animation<double> animCircleAnimation;
+  bool isAnimating = true;
 
   @override
   void initState() {
@@ -47,6 +52,12 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     mainAnimation = Tween(begin: 0.0, end: 300.0).animate(mainController);
     mainController.repeat();
+
+    animCircleController =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    animCircleAnimation =
+        Tween(begin: 0.1, end: pi * 2).animate(animCircleController);
+    animCircleController.repeat();
   }
 
   @override
@@ -59,7 +70,7 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
         fit: StackFit.expand,
         children: [
           SingleChildScrollView(
-            child: Column(
+            child: Wrap(
               children: [
                 Container(
                     width: 300,
@@ -124,6 +135,14 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
                         progress: 0.5,
                         offsetX: mainAnimation.value),
                   ),
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  child: CustomPaint(
+                    painter:
+                        CustomAnimCircle(sweepAngle: animCircleAnimation.value),
+                  ),
                 )
               ],
             ),
@@ -145,9 +164,46 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
               ),
             ),
           ),
+          Positioned(
+              bottom: 30,
+              right: 20,
+              child: Container(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  child: Text(isAnimating ? '暂停\n动画' : '播放\n动画',style: TextStyle(fontSize: 12),),
+                  onPressed: () {
+                    if (isAnimating) {
+                      stopAnim();
+                    } else {
+                      startAnim();
+                    }
+                  },
+                ),
+              ))
         ],
       ),
     );
+  }
+
+  stopAnim() {
+    setState(() {
+      isAnimating = false;
+    });
+    controller.stop();
+    wareController.stop();
+    mainController.stop();
+    animCircleController.stop();
+  }
+
+  startAnim() {
+    setState(() {
+      isAnimating = true;
+    });
+    controller.repeat();
+    wareController.repeat();
+    mainController.repeat();
+    animCircleController.repeat();
   }
 
   @override
@@ -155,6 +211,7 @@ class _CustomWidgetPageState extends State<CustomWidgetPage>
     controller.dispose();
     wareController.dispose();
     mainController.dispose();
+    animCircleController.stop();
     super.dispose();
   }
 }

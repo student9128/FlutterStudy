@@ -67,7 +67,6 @@ class _TableDemoPageState extends State<TableDemoPage>
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
         centerTitle: true,
         //在标题前面显示的一个控件，在首页通常显示应用的 logo；在其他界面通常显示为返回按钮
