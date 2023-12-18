@@ -174,72 +174,6 @@ class _ContainerPageState extends State<ContainerPage> {
             ),
             CustomContainer(
               padding: EdgeInsets.all(10),
-              width: 170,
-              margin: const EdgeInsets.only(left: 10, top: 10),
-              innerBorderWidth: 0,
-              innerBorderColor: const Color(0xffAFC8AD),
-              outerBorderWidth: 3,
-              color: const Color(0xffAFC8AD),
-              child: Column(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(bottom: 10),
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black, width: 1.5)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.asset(
-                          AssetUtils.getAssetImage('avatar_test.jpeg',
-                              isPNG: false),
-                          width: 150,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Expanded(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Carolin Sky,29",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.location_on,
-                                size: 12,
-                              ),
-                              Text('Shanghai,China',
-                                  style: TextStyle(fontSize: 12))
-                            ],
-                          )
-                        ],
-                      )),
-                      CustomContainer(
-                        color: const Color(0xffAFC8AD),
-                        borderRadius: BorderRadius.circular(30),
-                        innerBorderWidth: 1,
-                        child: Transform.rotate(
-                          angle: -pi / 2.0,
-                          child: Icon(
-                            Icons.arrow_back_rounded,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            CustomContainer(
-              padding: EdgeInsets.all(10),
               width: 150,
               margin: const EdgeInsets.only(left: 10, top: 10),
               innerBorderWidth: 2,
@@ -268,7 +202,7 @@ class _ContainerPageState extends State<ContainerPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Carolin Sky,29",
+                        "Carolin, 29",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
@@ -317,7 +251,7 @@ class _ContainerPageState extends State<ContainerPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Carolin Sky,29",
+                        "Carolin, 29",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 14),
                       ),
@@ -333,6 +267,72 @@ class _ContainerPageState extends State<ContainerPage> {
                       )
                     ],
                   ),
+                ],
+              ),
+            ),
+            CustomContainer(
+              padding: EdgeInsets.all(10),
+              width: 170,
+              margin: const EdgeInsets.only(left: 10, top: 10),
+              innerBorderWidth: 0,
+              innerBorderColor: const Color(0xffAFC8AD),
+              outerBorderWidth: 3,
+              color: const Color(0xffAFC8AD),
+              child: Column(
+                children: [
+                  Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.black, width: 1.5)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image.asset(
+                          AssetUtils.getAssetImage('avatar_test.jpeg',
+                              isPNG: false),
+                          width: 150,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Carolin, 29",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    size: 12,
+                                  ),
+                                  Text('Shanghai,China',
+                                      style: TextStyle(fontSize: 12))
+                                ],
+                              )
+                            ],
+                          )),
+                      CustomContainer(
+                        color: const Color(0xffAFC8AD),
+                        borderRadius: BorderRadius.circular(30),
+                        innerBorderWidth: 1,
+                        child: Transform.rotate(
+                          angle: -pi / 2.0,
+                          child: Icon(
+                            Icons.arrow_back_rounded,
+                          ),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
@@ -381,6 +381,8 @@ class _ContainerPageState extends State<ContainerPage> {
                             ),
                           ),
                           CustomContainer(
+                            width: 25,
+                            height: 25,
                             margin: EdgeInsets.symmetric(horizontal: 10),
                             borderRadius: BorderRadius.circular(30),
                             outerBorderWidth: 2,
@@ -388,7 +390,7 @@ class _ContainerPageState extends State<ContainerPage> {
                             alignment: Alignment(-1, -1),
                             child: Transform.rotate(
                               angle: -pi / 2,
-                              child: Icon(Icons.arrow_back_ios_rounded),
+                              child: Icon(Icons.arrow_back_ios_rounded,size: 15,),
                             ),
                           )
                         ],
