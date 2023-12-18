@@ -27,6 +27,11 @@ class Routes{
     for (var item in basicList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
     } 
+     List<Map<String, dynamic>> basicWidgetList=combineRouteList2Map(basicWidgetPageName, basicWidgetHandler);
+    for (var item in basicWidgetList) {
+      debugPrint('item===${item['title']}');
+      router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);
+    } 
     List<Map<String, dynamic>> advancedList=combineRouteList2Map(advancedPageName, advancedHandler);
     for (var item in advancedList) {
       router.define(item['title'], handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);

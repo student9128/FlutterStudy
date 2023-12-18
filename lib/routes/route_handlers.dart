@@ -41,6 +41,7 @@ import 'package:flutter_study_list/basic/basic_scroll_page.dart';
 import 'package:flutter_study_list/basic/basic_style_page.dart';
 import 'package:flutter_study_list/basic/basic_text_page.dart';
 import 'package:flutter_study_list/basic/basic_widget_page.dart';
+import 'package:flutter_study_list/basic/basic_widgets/container_page.dart';
 import 'package:flutter_study_list/basic/material_components/tab_bar_page.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
 import 'package:flutter_study_list/main_page.dart';
@@ -67,6 +68,8 @@ var basicPaintAndEffectPageHandler= Handler(handlerFunc:((context, parameters) =
 var basicAsyncPageHandler= Handler(handlerFunc:((context, parameters) => const BasicAsyncPage()));
 var basicScrollPageHandler= Handler(handlerFunc:((context, parameters) => const BasicScrollPage()));
 var basicAccessibilityPageHandler= Handler(handlerFunc:((context, parameters) => const BasicAccessibilityPage()));
+
+var containerPageHandler= Handler(handlerFunc:((context, parameters) => const ContainerPage()));
 //Advanced
 var textHandler= Handler(handlerFunc:((context, parameters) => const TextPage()));
 var customWidgetHandler = Handler(handlerFunc:((context, parameters) => const CustomWidgetPage()));

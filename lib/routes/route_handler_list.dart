@@ -23,6 +23,9 @@ List<Handler> basicHandler = [
   basicScrollPageHandler,
   basicAccessibilityPageHandler
 ];
+List<Handler> basicWidgetHandler = [
+containerPageHandler,
+];
 List<Handler> advancedHandler = [
   customWidgetHandler,
   customIconWidgetHandler,

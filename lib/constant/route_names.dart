@@ -15,6 +15,9 @@ List<String> basicPageName = [
   'basicScrollPage'
   'basicAccessibilityPage'
 ];
+List<String> basicWidgetPageName=[
+  'containerPage',
+];
 List<String> animPageName = [
   'basicAnim',
   'animatedList',
@@ -46,6 +49,9 @@ Map<String, dynamic> subPageList = {
     'materialAppPage',
     'widgetsAppPage',
     'drawerPage'
+  ],
+  'basicWidgetPage':[
+    'containerPage'
   ]
 };
 List<String> baiduMapPageName = [
