@@ -51,14 +51,14 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
     },
     {
       'icon': 'emoji3',
-      'title': 'Flutter',
+      'title': 'Android',
       'checked': false,
       'enableAnim': false,
       'curve': Curves.easeInCirc
     },
     {
       'icon': 'emoji4',
-      'title': 'Flutter',
+      'title': 'iOS',
       'checked': false,
       'enableAnim': false,
       'curve': Curves.easeInCirc
@@ -236,112 +236,164 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                               });
                         }).toList(),
                       ),
-                    )
-                    // Container(
-                    //   height: 400,
-                    //   child: NotificationListener<ScrollNotification>(
-                    //     onNotification: (ScrollNotification notification) {
-                    //       var maxScrollExtent = notification.metrics.maxScrollExtent;
-                    //       var pixels = notification.metrics.pixels;
-                    //       var depth = notification.depth;
-                    //       debugPrint(
-                    //           'outer======depth=======$depth,pixels=$pixels,maxScrollExtent=$maxScrollExtent,'
-                    //               'OverscrollNotification=${notification is OverscrollNotification},\n'
-                    //               'ScrollEndNotification=${notification is ScrollEndNotification},\n'
-                    //               'UserScrollNotification=${notification is UserScrollNotification},\n'
-                    //               'ScrollUpdateNotification=${notification is ScrollUpdateNotification},\n'
-                    //               'ScrollStartNotification=${notification is ScrollStartNotification}');
-                    //
-                    //       if (notification is ScrollStartNotification) {
-                    //         dragStartDetails = notification.dragDetails;
-                    //       }
-                    //
-                    //       // if (notification is OverscrollNotification) {
-                    //       //   if (_drag == null && dragStartDetails != null) {
-                    //       //     ScrollPositionWithSingleContext a = _pageController.position
-                    //       //         as ScrollPositionWithSingleContext;
-                    //       //     _drag = a.drag(dragStartDetails!, () {
-                    //       //       _drag = null;
-                    //       //     }) as ScrollDragController;
-                    //       //   }
-                    //       //   if (notification.dragDetails != null) {
-                    //       //     _drag?.update(notification.dragDetails!);
-                    //       //   }
-                    //       // }
-                    //       // if (notification is ScrollUpdateNotification) {
-                    //       //   return false;
-                    //       // }
-                    //       // if (notification is ScrollEndNotification) {
-                    //       //   // dragStartDetails = null;
-                    //       //   if (notification.dragDetails != null) {
-                    //       //     _drag?.end(notification.dragDetails!);
-                    //       //   }
-                    //       // }
-                    //       //
-                    //       // if (notification is UserScrollNotification) {
-                    //       //   debugPrint("direction========${notification.direction}");
-                    //       //   switch (notification.direction) {
-                    //       //     case ScrollDirection.forward:
-                    //       //       debugPrint("forward,${notification.metrics}");
-                    //       //       _drag?.update(DragUpdateDetails(globalPosition: Offset(notification.metrics.maxScrollExtent, 0)));
-                    //       //       break;
-                    //       //     case ScrollDirection.idle:
-                    //       //       _drag?.cancel();
-                    //       //       break;
-                    //       //     case ScrollDirection.reverse:
-                    //       //       debugPrint("reverse");
-                    //       //       break;
-                    //       //   }
-                    //       // }
-                    //       // return false;
-                    //       return true;
-                    //     },
-                    //     child: PageView(
-                    //         controller: _pageController,
-                    //         onPageChanged: (index) {
-                    //           setState(() {
-                    //             currentIndex = index;
-                    //           });
-                    //           _tabController.animateTo(index);
-                    //         },
-                    //         children: _tabList
-                    //             .map((String e) => e == 'Java'
-                    //                 ? Center(
-                    //                     child: Column(
-                    //                     children: [
-                    //                       TabBar(
-                    //                         tabs: _tabList.map((e) => Text(e)).toList(),
-                    //                         controller: _subTabController,
-                    //                         indicatorColor: Colors.blue,
-                    //                         indicatorSize: TabBarIndicatorSize.label,
-                    //                         isScrollable: true,
-                    //                         labelColor: Colors.lightGreenAccent,
-                    //                         unselectedLabelColor: Colors.black,
-                    //                         indicatorWeight: 1.0,
-                    //                         labelStyle: TextStyle(height: 2),
-                    //                         onTap: (index) {
-                    //                           _subPageController.jumpToPage(index);
-                    //                         },
-                    //                       ),
-                    //                       Expanded(
-                    //                         child: PageView(
-                    //                           controller: _subPageController,
-                    //                           children: _tabList
-                    //                               .map((e) => Center(
-                    //                                     child: Text(e),
-                    //                                   ))
-                    //                               .toList(),
-                    //                           onPageChanged: (index) {
-                    //                             _subTabController.animateTo(index);
-                    //                           },
-                    //                         ),
-                    //                       ),
-                    //                     ],
-                    //                   ))
-                    //                 : Center(child: Text(e)))
-                    //             .toList()),
-                    //   ),
-                    // )
+                    ),
+                    Container(
+                      width: sw - 32,
+                      height: _tabHeight,
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Color(0xffE3C770),
+                          borderRadius:
+                              BorderRadius.circular(_currentBottomTabRadius)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: _bottomTabList.map((e) {
+                          return CustomBottomTab(
+                              iconName: e['icon'],
+                              title: e['title'],
+                              isChecked: e['checked'],
+                              // enableAnim: e['enableAnim'],
+                              curve: e['curve'],
+                              onTap: () {
+                                var index = _bottomTabList.indexOf(e);
+                                for (int i = 0;
+                                    i < _bottomTabList.length;
+                                    i++) {
+                                  if (index == i) {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = true;
+                                      _bottomTabList[i]['enableAnim'] = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = false;
+                                      _bottomTabList[i]['enableAnim'] = false;
+                                    });
+                                  }
+                                }
+                              });
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                      width: sw - 32,
+                      height: _tabHeight,
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Color(0xffB5D5C5),
+                          borderRadius:
+                              BorderRadius.circular(_currentBottomTabRadius)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: _bottomTabList.map((e) {
+                          return CustomBottomTab(
+                              iconName: e['icon'],
+                              iconSize: 36,
+                              // title: e['title'],
+                              isChecked: e['checked'],
+                              enableAnim: e['enableAnim'],
+                              curve: e['curve'],
+                              onTap: () {
+                                var index = _bottomTabList.indexOf(e);
+                                for (int i = 0;
+                                    i < _bottomTabList.length;
+                                    i++) {
+                                  if (index == i) {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = true;
+                                      _bottomTabList[i]['enableAnim'] = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = false;
+                                      _bottomTabList[i]['enableAnim'] = false;
+                                    });
+                                  }
+                                }
+                              });
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                      width: sw - 32,
+                      height: _tabHeight,
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Color(0xff89CFF3),
+                          borderRadius:
+                              BorderRadius.circular(_currentBottomTabRadius)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: _bottomTabList.map((e) {
+                          return CustomBottomTab(
+                              iconName: e['icon'],
+                              iconSize: 36,
+                              // title: e['title'],
+                              isChecked: e['checked'],
+                              enableAnim: e['enableAnim'],
+                              showCustomSelectedIcon: true,
+                              curve: e['curve'],
+                              onTap: () {
+                                var index = _bottomTabList.indexOf(e);
+                                for (int i = 0;
+                                    i < _bottomTabList.length;
+                                    i++) {
+                                  if (index == i) {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = true;
+                                      _bottomTabList[i]['enableAnim'] = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = false;
+                                      _bottomTabList[i]['enableAnim'] = false;
+                                    });
+                                  }
+                                }
+                              });
+                        }).toList(),
+                      ),
+                    ),
+                    Container(
+                      width: sw - 32,
+                      height: _tabHeight,
+                      margin: EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Color(0xffE6B9DE),
+                          borderRadius:
+                              BorderRadius.circular(_currentBottomTabRadius),boxShadow: [BoxShadow(offset:Offset(3,3),color: Colors.black,blurRadius: 0.1)]),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: _bottomTabList.map((e) {
+                          return CustomBottomTab(
+                              iconName: e['icon'],
+                              iconSize: 36,
+                              // title: e['title'],
+                              isChecked: e['checked'],
+                              enableAnim: e['enableAnim'],
+                              showCustomSelectedIcon: true,
+                              curve: e['curve'],
+                              onTap: () {
+                                var index = _bottomTabList.indexOf(e);
+                                for (int i = 0;
+                                    i < _bottomTabList.length;
+                                    i++) {
+                                  if (index == i) {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = true;
+                                      _bottomTabList[i]['enableAnim'] = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      _bottomTabList[i]['checked'] = false;
+                                      _bottomTabList[i]['enableAnim'] = false;
+                                    });
+                                  }
+                                }
+                              });
+                        }).toList(),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -608,14 +660,18 @@ class CustomBottomTab extends StatefulWidget {
       this.title = '',
       this.isChecked = false,
       this.enableAnim = false,
+      this.showCustomSelectedIcon = false,
       this.curve,
+      this.iconSize,
       this.onTap})
       : super(key: key);
   final String iconName;
   final String title;
   final bool isChecked;
   final bool enableAnim;
+  final bool showCustomSelectedIcon;
   final Curve? curve;
+  final double? iconSize;
   Function? onTap;
 
   @override
@@ -659,11 +715,13 @@ class _CustomBottomTabState extends State<CustomBottomTab>
   void didUpdateWidget(covariant CustomBottomTab oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.enableAnim != oldWidget.enableAnim && widget.enableAnim) {
-      debugPrint('curevie====${widget.curve}');
       _animation = Tween(begin: 1.0, end: 1.2).animate(CurvedAnimation(
           parent: _animationController,
           curve: widget.curve ?? Curves.easeInCirc));
       _animationController.forward();
+    } else {
+      _count = 0;
+      _animationController.stop();
     }
   }
 
@@ -689,9 +747,12 @@ class _CustomBottomTabState extends State<CustomBottomTab>
                 return Transform.scale(
                   scale: _animation.value,
                   child: Image.asset(
-                    AssetUtils.getAssetImagePNG(widget.iconName),
-                    width: 24,
-                    height: 24,
+                    AssetUtils.getAssetImagePNG(
+                        widget.showCustomSelectedIcon && widget.enableAnim
+                            ? 'emoji16'
+                            : widget.iconName),
+                    width: widget.iconSize ?? 24,
+                    height: widget.iconSize ?? 24,
                   ),
                 );
               }),
