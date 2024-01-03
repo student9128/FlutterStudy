@@ -63,6 +63,13 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
       'enableAnim': false,
       'curve': Curves.easeInCirc
     },
+    {
+      'icon': 'emoji15',
+      'title': 'World',
+      'checked': false,
+      'enableAnim': false,
+      'curve': Curves.easeInCirc
+    },
   ];
   List<Map<String, dynamic>> curveList = [
     {
@@ -134,6 +141,7 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
 
   double _sliderBorderRadiusValue = 0;
   double _tabHeight = 64;
+  double _tabHeightX = 80;
   double _minBottomTabRadius = 10;
   double _currentBottomTabRadius = 10;
   bool _showBottomSheet = false;
@@ -361,7 +369,13 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                           color: Color(0xffE6B9DE),
                           borderRadius:
-                              BorderRadius.circular(_currentBottomTabRadius),boxShadow: [BoxShadow(offset:Offset(3,3),color: Colors.black,blurRadius: 0.1)]),
+                              BorderRadius.circular(_currentBottomTabRadius),
+                          boxShadow: [
+                            BoxShadow(
+                                offset: Offset(3, 3),
+                                color: Colors.black,
+                                blurRadius: 0.1)
+                          ]),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: _bottomTabList.map((e) {
@@ -392,6 +406,67 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                                 }
                               });
                         }).toList(),
+                      ),
+                    ),
+                    Container(
+                      width: sw,
+                      height: _tabHeightX,
+                      // color: Colors.cyanAccent.withOpacity(0.2),
+                      margin: EdgeInsets.only(top: 10),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              width: sw,
+                              height: 56,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffEEF5FF),
+                                  borderRadius: BorderRadius.circular(
+                                      _currentBottomTabRadius),
+                                  ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: _bottomTabList.map((e) {
+                                  var index = _bottomTabList.indexOf(e);
+                                  if(index==2){
+                                    return Container(width: sw/5.3*1.3,);
+                                  }
+                                  return CustomBottomTab(
+                                    tabWidth: sw/5.3,
+                                      iconName: e['icon'],
+                                      iconSize: 36,
+                                      // title: e['title'],
+                                      isChecked: e['checked'],
+                                      enableAnim: false,
+                                      showCustomSelectedIcon: false,
+                                      curve: e['curve'],
+                                      onTap: () {
+                                      });
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                              left: sw / 2 - 35,
+                              top: 0,
+                              child: KFButton(
+                                width: 70,
+                                height: 70,
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(35),
+                                  color: Color(0xffEEF5FF),
+                                ),
+                                child: Image.asset(
+                                  AssetUtils.getAssetImagePNG('emoji16'),
+                                  width: 25,
+                                  height: 25,
+                                  fit: BoxFit.contain,
+
+                                ),
+                              ))
+                        ],
                       ),
                     ),
                   ],
@@ -663,6 +738,8 @@ class CustomBottomTab extends StatefulWidget {
       this.showCustomSelectedIcon = false,
       this.curve,
       this.iconSize,
+      this.tabWidth,
+      this.tabHeight,
       this.onTap})
       : super(key: key);
   final String iconName;
@@ -672,6 +749,8 @@ class CustomBottomTab extends StatefulWidget {
   final bool showCustomSelectedIcon;
   final Curve? curve;
   final double? iconSize;
+  final double? tabWidth;
+  final double? tabHeight;
   Function? onTap;
 
   @override
@@ -734,6 +813,8 @@ class _CustomBottomTabState extends State<CustomBottomTab>
   @override
   Widget build(BuildContext context) {
     return KFButton(
+      width: widget.tabWidth,
+      height: widget.tabHeight,
       onTap: () {
         widget.onTap?.call();
       },
