@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/custom_tab_bar.dart';
 import 'package:flutter_study_list/util/asset_utils.dart';
 import 'package:flutter_study_list/widget/KFButton.dart';
 
@@ -146,6 +147,8 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
   double _currentBottomTabRadius = 10;
   bool _showBottomSheet = false;
   bool _showAnimBottomSheet = false;
+  double _sliderTabNorchOffsetY = 0;
+  double _currentTabNorchOffsetY = 0;
 
   @override
   void initState() {
@@ -188,6 +191,7 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
               child: Stack(
             children: [
               SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: 30),
                 child: Column(
                   children: [
                     TabBar(
@@ -421,19 +425,22 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                               width: sw,
                               height: 56,
                               decoration: BoxDecoration(
-                                  color: Color(0xffEEF5FF),
-                                  borderRadius: BorderRadius.circular(
-                                      _currentBottomTabRadius),
-                                  ),
+                                color: Color(0xffEEF5FF),
+                                borderRadius: BorderRadius.circular(
+                                    _currentBottomTabRadius),
+                              ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: _bottomTabList.map((e) {
                                   var index = _bottomTabList.indexOf(e);
-                                  if(index==2){
-                                    return Container(width: sw/5.3*1.3,);
+                                  if (index == 2) {
+                                    return Container(
+                                      width: sw / 5.3 * 1.3,
+                                    );
                                   }
                                   return CustomBottomTab(
-                                    tabWidth: sw/5.3,
+                                      tabWidth: sw / 5.3,
                                       iconName: e['icon'],
                                       iconSize: 36,
                                       // title: e['title'],
@@ -441,8 +448,7 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                                       enableAnim: false,
                                       showCustomSelectedIcon: false,
                                       curve: e['curve'],
-                                      onTap: () {
-                                      });
+                                      onTap: () {});
                                 }).toList(),
                               ),
                             ),
@@ -463,10 +469,32 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                                   width: 25,
                                   height: 25,
                                   fit: BoxFit.contain,
-
                                 ),
                               ))
                         ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar(),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar(
+                        hasCorner: true,
+                        centerOffsetY: _currentTabNorchOffsetY,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar(
+                        hasCorner: true,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar(
+                        hasCorner: true,
                       ),
                     ),
                   ],
@@ -565,43 +593,15 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                             ),
                             Row(
                               children: [
-                                Expanded(
-                                    child: SliderTheme(
-                                  data: SliderThemeData(
-                                    trackHeight: 4.0,
-                                    thumbShape: RoundSliderThumbShape(
-                                        enabledThumbRadius: 10.0),
-                                    overlayShape: RoundSliderOverlayShape(
-                                        overlayRadius: 16.0),
-                                    activeTrackColor: Colors.yellow,
-                                    inactiveTrackColor: Color(0xffF6F1E9),
-                                    thumbColor: Colors.red,
-                                    overlayColor: Colors.blue.withOpacity(0.2),
-                                    valueIndicatorShape:
-                                        DropSliderValueIndicatorShape(),
-                                    valueIndicatorTextStyle:
-                                        TextStyle(color: Colors.white),
-                                    trackShape: RectangularSliderTrackShape(),
-                                    showValueIndicator:
-                                        ShowValueIndicator.always,
-                                    valueIndicatorColor:
-                                        Colors.blue, // 修改值指示器的颜色
-                                  ),
-                                  child: Slider(
-                                    value: _sliderBorderRadiusValue,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        _sliderBorderRadiusValue = newValue;
-                                        _currentBottomTabRadius =
-                                            (_sliderBorderRadiusValue *
-                                                        (_tabHeight / 2 -
-                                                            _minBottomTabRadius) +
-                                                    _minBottomTabRadius)
-                                                .floorToDouble();
-                                      });
-                                    },
-                                  ),
-                                )),
+                                Expanded(child: buildSlider(value: _sliderBorderRadiusValue,onChanged: (newValue){
+                                  setState(() {
+                                    _sliderBorderRadiusValue = newValue;
+                                    _currentBottomTabRadius = (_sliderBorderRadiusValue *
+                                        (_tabHeight / 2 - _minBottomTabRadius) +
+                                        _minBottomTabRadius)
+                                        .floorToDouble();
+                                  });
+                                }),),
                                 Container(
                                   width: 50,
                                   child: Text(
@@ -610,7 +610,26 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                                   ),
                                 )
                               ],
-                            )
+                            ),
+                            Row(
+                              children: [
+                                Text('凹槽'),
+                                Expanded(child: buildSlider(value: _sliderTabNorchOffsetY,onChanged: (newValue){
+                                  debugPrint('newValue=$newValue');
+                                  setState(() {
+                                    _sliderTabNorchOffsetY = newValue;
+                                    _currentTabNorchOffsetY = (_sliderTabNorchOffsetY*50).floorToDouble();
+                                  });
+                                }),),
+                                Container(
+                                  width: 50,
+                                  child: Text(
+                                    '${(_sliderTabNorchOffsetY*50).toStringAsFixed(0)}',
+                                    style: TextStyle(color: Color(0xffDED0B6)),
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ))
@@ -692,6 +711,31 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
             ],
           ))
         ],
+      ),
+    );
+  }
+
+  SliderTheme buildSlider({required double value,Function(double value)? onChanged}) {
+    return SliderTheme(
+      data: SliderThemeData(
+        trackHeight: 4.0,
+        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0),
+        overlayShape: RoundSliderOverlayShape(overlayRadius: 16.0),
+        activeTrackColor: Colors.yellow,
+        inactiveTrackColor: Color(0xffF6F1E9),
+        thumbColor: Colors.red,
+        overlayColor: Colors.blue.withOpacity(0.2),
+        valueIndicatorShape: DropSliderValueIndicatorShape(),
+        valueIndicatorTextStyle: TextStyle(color: Colors.white),
+        trackShape: RectangularSliderTrackShape(),
+        showValueIndicator: ShowValueIndicator.always,
+        valueIndicatorColor: Colors.blue, // 修改值指示器的颜色
+      ),
+      child: Slider(
+        value: value,
+        onChanged: (newValue) {
+         onChanged?.call(newValue);
+        },
       ),
     );
   }
@@ -855,15 +899,15 @@ class _CustomBottomTabState extends State<CustomBottomTab>
   }
 }
 
-class CustomTabBar extends StatefulWidget {
-  CustomTabBar({Key? key, required this.tabList}) : super(key: key);
+class CustomTabBarLocal extends StatefulWidget {
+  CustomTabBarLocal({Key? key, required this.tabList}) : super(key: key);
   List<Widget> tabList;
 
   @override
-  State<CustomTabBar> createState() => _CustomTabBarState();
+  State<CustomTabBarLocal> createState() => _CustomTabBarLocalState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar> {
+class _CustomTabBarLocalState extends State<CustomTabBarLocal> {
   double _tabBarHeight = 72;
 
   @override
