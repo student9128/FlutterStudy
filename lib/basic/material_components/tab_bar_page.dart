@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_study_list/advanced/custom_widgets/custom_tab_bar.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/custom_tab_bar2.dart';
 import 'package:flutter_study_list/util/asset_utils.dart';
 import 'package:flutter_study_list/widget/KFButton.dart';
 
@@ -495,6 +496,19 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                       child: CustomTabBar(
                         hasCorner: true,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar2(
+                        hasCorner: true,
+                        tabType: TabType.notch,
+                      ),
+                    ),  Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar2(
+                        hasCorner: true,
+                        tabType: TabType.raised,
                       ),
                     ),
                   ],
