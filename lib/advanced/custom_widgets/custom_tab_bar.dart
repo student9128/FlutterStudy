@@ -64,10 +64,10 @@ class CustomTabBarPainter extends CustomPainter {
   _initPaint() {
     _paint = Paint()
       ..color = Colors.green
-      ..style = PaintingStyle.stroke
+      ..style = PaintingStyle.fill
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round
-      ..isAntiAlias = true..blendMode;
+      ..isAntiAlias = true;
     _axisPaint = Paint()
       ..color = Colors.red
       ..style = PaintingStyle.stroke

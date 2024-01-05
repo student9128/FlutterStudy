@@ -503,8 +503,22 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                       child: CustomTabBar2(
                         hasCorner: true,
                         tabType: TabType.notch,
+                        topLeft: 20,
+                        bottomRight: 20,
                       ),
-                    ),  Container(
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: CustomTabBar2(
+                        hasCorner: true,
+                        tabType: TabType.notch,
+                        topLeft: 34,
+                        bottomRight: 34,
+                        topRight: 34,
+                        bottomLeft: 34,
+                      ),
+                    ),
+                    Container(
                       margin: EdgeInsets.only(top: 10, left: 10, right: 10),
                       child: CustomTabBar2(
                         hasCorner: true,
@@ -607,15 +621,21 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                             ),
                             Row(
                               children: [
-                                Expanded(child: buildSlider(value: _sliderBorderRadiusValue,onChanged: (newValue){
-                                  setState(() {
-                                    _sliderBorderRadiusValue = newValue;
-                                    _currentBottomTabRadius = (_sliderBorderRadiusValue *
-                                        (_tabHeight / 2 - _minBottomTabRadius) +
-                                        _minBottomTabRadius)
-                                        .floorToDouble();
-                                  });
-                                }),),
+                                Expanded(
+                                  child: buildSlider(
+                                      value: _sliderBorderRadiusValue,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          _sliderBorderRadiusValue = newValue;
+                                          _currentBottomTabRadius =
+                                              (_sliderBorderRadiusValue *
+                                                          (_tabHeight / 2 -
+                                                              _minBottomTabRadius) +
+                                                      _minBottomTabRadius)
+                                                  .floorToDouble();
+                                        });
+                                      }),
+                                ),
                                 Container(
                                   width: 50,
                                   child: Text(
@@ -628,17 +648,23 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
                             Row(
                               children: [
                                 Text('凹槽'),
-                                Expanded(child: buildSlider(value: _sliderTabNorchOffsetY,onChanged: (newValue){
-                                  debugPrint('newValue=$newValue');
-                                  setState(() {
-                                    _sliderTabNorchOffsetY = newValue;
-                                    _currentTabNorchOffsetY = (_sliderTabNorchOffsetY*50).floorToDouble();
-                                  });
-                                }),),
+                                Expanded(
+                                  child: buildSlider(
+                                      value: _sliderTabNorchOffsetY,
+                                      onChanged: (newValue) {
+                                        debugPrint('newValue=$newValue');
+                                        setState(() {
+                                          _sliderTabNorchOffsetY = newValue;
+                                          _currentTabNorchOffsetY =
+                                              (_sliderTabNorchOffsetY * 50)
+                                                  .floorToDouble();
+                                        });
+                                      }),
+                                ),
                                 Container(
                                   width: 50,
                                   child: Text(
-                                    '${(_sliderTabNorchOffsetY*50).toStringAsFixed(0)}',
+                                    '${(_sliderTabNorchOffsetY * 50).toStringAsFixed(0)}',
                                     style: TextStyle(color: Color(0xffDED0B6)),
                                   ),
                                 )
@@ -729,7 +755,8 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
     );
   }
 
-  SliderTheme buildSlider({required double value,Function(double value)? onChanged}) {
+  SliderTheme buildSlider(
+      {required double value, Function(double value)? onChanged}) {
     return SliderTheme(
       data: SliderThemeData(
         trackHeight: 4.0,
@@ -748,7 +775,7 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
       child: Slider(
         value: value,
         onChanged: (newValue) {
-         onChanged?.call(newValue);
+          onChanged?.call(newValue);
         },
       ),
     );
@@ -798,6 +825,7 @@ class CustomBottomTab extends StatefulWidget {
       this.iconSize,
       this.tabWidth,
       this.tabHeight,
+      this.color,
       this.onTap})
       : super(key: key);
   final String iconName;
@@ -809,6 +837,7 @@ class CustomBottomTab extends StatefulWidget {
   final double? iconSize;
   final double? tabWidth;
   final double? tabHeight;
+  final Color? color;
   Function? onTap;
 
   @override
@@ -873,10 +902,12 @@ class _CustomBottomTabState extends State<CustomBottomTab>
     return KFButton(
       width: widget.tabWidth,
       height: widget.tabHeight,
+      color: widget.color,
       onTap: () {
         widget.onTap?.call();
       },
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
