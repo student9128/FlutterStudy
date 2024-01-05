@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/chart_line.dart';
 
 ///平移，旋转，缩放，渐变
 class BasicAnim extends StatefulWidget {
@@ -186,7 +187,7 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
                   child: Text('暂停'))
             ],
           ),
-          _buildAnimContainer()
+          _buildAnimContainer(),
           // AnimatedBuilder(animation: _animation, builder:(context, child){
           //   switch(currentType){
           //     case 0:
@@ -203,6 +204,11 @@ class _BasicAnimState extends State<BasicAnim> with TickerProviderStateMixin{
           //   return Transform.translate(offset:Offset(100,200),child: child,);
             
           // },child: Container(width: 100,height: 100,color: Colors.red,), ),
+
+          Container(
+            width: 300,
+            height: 300,
+            child: CustomPaint(painter: ChartLine(),),)
         ],
       ),
       
