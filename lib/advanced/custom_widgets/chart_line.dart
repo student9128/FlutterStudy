@@ -140,6 +140,7 @@ double animValue;
     Path path5 = Path();
     Path path6 = Path();
     Path path7 = Path();
+    Path path8 = Path();
     // path3.moveTo(points4[0].dx, points4[0].dy);
     path3.moveTo(points3[0].dx, points3[0].dy);
     path4.moveTo(points3[0].dx, points3[0].dy);
@@ -168,6 +169,14 @@ double animValue;
     points4.add(Offset(unitX*10,unitY*2));
     points4.add(Offset(unitX*16,unitY*8));
     path5=generatePath(points4, 0.35, path5);
+    points4.clear();
+    points4.add(Offset(unitX*2,unitY*8));
+    points4.add(Offset(unitX*4,unitY*2));
+    // points4.add(Offset(unitX*4.5,unitY*6));
+    points4.add(Offset(unitX*10,unitY*4));
+    points4.add(Offset(unitX*16,unitY*3));
+    path8.moveTo(unitX*2,unitY*8);
+    path8=generatePath(points4, 0.35, path8);
 
     // for(int i = 1; i < points3.length; i++){
     //   var current = Offset(points3[i].dx,points3[i].dy);
@@ -198,8 +207,10 @@ double animValue;
     canvas.drawPath(path3, _linePaint);
     _linePaint..color=Color(0xffFF6C22)..strokeWidth=4..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path4, _linePaint);
-    _linePaint..color=Color(0xff7E30E1)..strokeWidth=4..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    _linePaint..color=Color(0xff7E30E1)..strokeWidth=6..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path5, _linePaint);
+    _linePaint..color=Color(0xff45FFCA)..strokeWidth=6..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    canvas.drawPath(path8, _linePaint);
     if(animValue>0){
     path6=generateAnimPath(path5, path6);
     path7=generateAnimPath(path4, path7);
