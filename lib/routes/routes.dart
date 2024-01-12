@@ -51,6 +51,7 @@ class Routes{
     router.define('heroAnimSecondPage', handler: heroAnimSecondPageHandler);
     router.define("basicWidgetCommonPage", handler: basicWidgetCommonPageHandler,transitionType: TransitionType.inFromRight);
     router.define("tabBarPage", handler: tabBarPageHandler,transitionType: TransitionType.inFromRight);
+    router.define("bottomNavigationBarPage", handler: bottomNavBarPageHandler,transitionType: TransitionType.inFromRight);
     // for (var item in routeHandlerList) {
     //   if(item['title']!.toString()!='/'){
     //   router.define(item['title']!.toString(), handler: item['handler']! as Handler,transitionType: TransitionType.inFromRight);

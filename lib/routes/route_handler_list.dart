@@ -49,7 +49,8 @@ List<Handler> animHandler = [
 ];
 
 List<Handler> basicMaterialComponentsPageHandlerList=[
-  tabBarPageHandler
+  tabBarPageHandler,
+  bottomNavBarPageHandler
 ];
 List<Handler> baiduMapHandlerList=[
   singleLocationHandler,

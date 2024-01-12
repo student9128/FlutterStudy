@@ -42,6 +42,7 @@ import 'package:flutter_study_list/basic/basic_style_page.dart';
 import 'package:flutter_study_list/basic/basic_text_page.dart';
 import 'package:flutter_study_list/basic/basic_widget_page.dart';
 import 'package:flutter_study_list/basic/basic_widgets/container_page.dart';
+import 'package:flutter_study_list/basic/material_components/bottom_nav_bar_page.dart';
 import 'package:flutter_study_list/basic/material_components/tab_bar_page.dart';
 import 'package:flutter_study_list/basic/text_page.dart';
 import 'package:flutter_study_list/main_page.dart';
@@ -102,6 +103,7 @@ var liveAnimHandler = Handler(handlerFunc: ((context, parameters) => const LiveA
 
 //basicMaterialComponentsPageHandler 子页面
 var tabBarPageHandler = Handler(handlerFunc: (((context, parameters) => const TabBarPage())));
+var bottomNavBarPageHandler = Handler(handlerFunc: (((context, parameters) => const BottomNavBarPage())));
 
 // void defineRoutes(FluroRouter router) {
 //   router.define("/text", handler: textHandler);
