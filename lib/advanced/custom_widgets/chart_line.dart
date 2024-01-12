@@ -19,6 +19,9 @@ class ChartLine extends CustomPainter {
       yPaint;
   late TextPainter _axisTextPaint;
   int count = 16;
+double animValue;
+
+  ChartLine({this.animValue=0});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -92,7 +95,7 @@ class ChartLine extends CustomPainter {
     final path2 = Path();
     double p0X=startX;
     double p0Y=startY-unitY*8;
-    debugPrint('unitX=$unitX,unitY=$unitY,$p0X,$p0Y');
+    // debugPrint('unitX=$unitX,unitY=$unitY,$p0X,$p0Y');
     _linePaint..color = Colors.indigoAccent;
     canvas.drawLine(Offset(p0X, p0Y),Offset(endX, p0Y), _linePaint);
     path2.moveTo(p0X,p0Y);
@@ -135,9 +138,12 @@ class ChartLine extends CustomPainter {
     final path3 = Path();
     Path path4 = Path();
     Path path5 = Path();
+    Path path6 = Path();
+    Path path7 = Path();
     // path3.moveTo(points4[0].dx, points4[0].dy);
     path3.moveTo(points3[0].dx, points3[0].dy);
     path4.moveTo(points3[0].dx, points3[0].dy);
+    // path6.moveTo(points3[0].dx, points3[0].dy);
 
     Offset a = points3[0];
     Offset b = points3[0];
@@ -163,6 +169,15 @@ class ChartLine extends CustomPainter {
     points4.add(Offset(unitX*16,unitY*8));
     path5=generatePath(points4, 0.35, path5);
 
+    // for(int i = 1; i < points3.length; i++){
+    //   var current = Offset(points3[i].dx,points3[i].dy);
+    //   var pre = Offset(points3[i-1].dx,points3[i-1].dy);
+    //   var next = Offset(points3[i+1<points3.length?i+1:i].dx,points3[i+1<points3.length?i+1:i].dy);
+    //   debugPrint('current=$current,pre=$pre');
+    //  path6.cubicTo((pre.dx+current.dx)/2, pre.dy, (pre.dx+current.dx)/2, current.dy, current.dx, current.dy);
+    // }
+
+
     // for (int i = 1; i < points4.length - 2; i++) {
     //   final x0 = points4[i].dx;
     //   final y0 = points4[i].dy;
@@ -181,10 +196,28 @@ class ChartLine extends CustomPainter {
     // }
     _linePaint..color=Colors.blue..strokeWidth=10..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path3, _linePaint);
-    _linePaint..color=Colors.cyanAccent..strokeWidth=2..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    _linePaint..color=Color(0xffFF6C22)..strokeWidth=4..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path4, _linePaint);
-    _linePaint..color=Colors.lightGreen..strokeWidth=2..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    _linePaint..color=Color(0xff7E30E1)..strokeWidth=4..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path5, _linePaint);
+    if(animValue>0){
+    path6=generateAnimPath(path5, path6);
+    path7=generateAnimPath(path4, path7);
+    _linePaint..color=Color(0xffFFF78A)..strokeWidth=1..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    canvas.drawPath(path6, _linePaint);
+    _linePaint..color=Colors.cyanAccent..strokeWidth=1..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    canvas.drawPath(path7, _linePaint);
+    }
+  }
+
+  Path generateAnimPath(Path path5, Path path) {
+    var list = path5.computeMetrics().toList();
+    var length = animValue*list.length.toInt();
+    for(int i=0;i<length;i++){
+     var extractPath =  list[i].extractPath(0, list[i].length*animValue,startWithMoveTo: true);
+     path.addPath(extractPath, Offset(0, 0));
+    }
+    return path;
   }
 
   Path generatePath(List<Offset> points3,double factor, Path path4) {
@@ -195,9 +228,7 @@ class ChartLine extends CustomPainter {
      var next = Offset(points3[i+1<points3.length?i+1:i].dx,points3[i+1<points3.length?i+1:i].dy);
      var control1 =pre+temp;
     temp =((next-pre)/2)*factor;
-      debugPrint('next-pre=${next-pre}');
     if((next-pre).dx<=20){
-      debugPrint('next-pre=${next-pre}走吗了');
       temp = Offset(0, temp.dy);
     }
      var control2 =current-temp;
