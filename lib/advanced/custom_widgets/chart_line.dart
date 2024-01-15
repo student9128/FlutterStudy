@@ -141,9 +141,11 @@ double animValue;
     Path path6 = Path();
     Path path7 = Path();
     Path path8 = Path();
+    Path path9 = Path();
     // path3.moveTo(points4[0].dx, points4[0].dy);
     path3.moveTo(points3[0].dx, points3[0].dy);
     path4.moveTo(points3[0].dx, points3[0].dy);
+    path9.moveTo(points3[0].dx, points3[0].dy);
     // path6.moveTo(points3[0].dx, points3[0].dy);
 
     Offset a = points3[0];
@@ -178,13 +180,14 @@ double animValue;
     path8.moveTo(unitX*2,unitY*8);
     path8=generatePath(points4, 0.35, path8);
 
-    // for(int i = 1; i < points3.length; i++){
-    //   var current = Offset(points3[i].dx,points3[i].dy);
-    //   var pre = Offset(points3[i-1].dx,points3[i-1].dy);
-    //   var next = Offset(points3[i+1<points3.length?i+1:i].dx,points3[i+1<points3.length?i+1:i].dy);
-    //   debugPrint('current=$current,pre=$pre');
-    //  path6.cubicTo((pre.dx+current.dx)/2, pre.dy, (pre.dx+current.dx)/2, current.dy, current.dx, current.dy);
-    // }
+    var f=0.5;
+    for(int i = 1; i < points3.length; i++){
+      var current = Offset(points3[i].dx,points3[i].dy);
+      var pre = Offset(points3[i-1].dx,points3[i-1].dy);
+      var next = Offset(points3[i+1<points3.length?i+1:i].dx,points3[i+1<points3.length?i+1:i].dy);
+      debugPrint('current=$current,pre=$pre');
+     path9.cubicTo(pre.dx+(current.dx-pre.dx)*f, pre.dy, current.dx-(current.dx-pre.dx)*f, current.dy, current.dx, current.dy);
+    }
 
 
     // for (int i = 1; i < points4.length - 2; i++) {
@@ -219,6 +222,8 @@ double animValue;
     _linePaint..color=Colors.cyanAccent..strokeWidth=1..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
     canvas.drawPath(path7, _linePaint);
     }
+    _linePaint..color=Colors.amberAccent..strokeWidth=0.5..strokeCap=StrokeCap.round..strokeJoin=StrokeJoin.round;
+    canvas.drawPath(path9, _linePaint);
   }
 
   Path generateAnimPath(Path path5, Path path) {
