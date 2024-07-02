@@ -213,7 +213,8 @@ class Constants {
     'pdfViewer',
     'ListView自动加载数据',
     '百度地图',
-    '高德地图'
+    '高德地图',
+    '自定义Swiper组件'
   ];
   static List<String> aMapList=[
     '高德定位',

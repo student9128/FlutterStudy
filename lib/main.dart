@@ -58,6 +58,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
       theme: ThemeData(primarySwatch: Colors.green),
       onGenerateRoute: Application.router.generator,
     );

@@ -36,8 +36,8 @@ List<Handler> advancedHandler = [
   pdfViewerHandler,
   listviewAutoLoadMoreHandler,
   baiduMapHandler,
-  gaoDeMapHandler
-
+  gaoDeMapHandler,
+  customSwiperHandler
 ];
 List<Handler> animHandler = [
   basicAnimHandler,
