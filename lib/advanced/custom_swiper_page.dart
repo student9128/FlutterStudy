@@ -56,20 +56,35 @@ class _CustomSwiperPageState extends State<CustomSwiperPage> {
               height: 150,
               swiperBuilder: (index) {
                 debugPrint("index====$index");
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16),
-                  width: MediaQuery.of(context).size.width,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      color: Colors.primaries.elementAt(index),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Image.asset(
-                    AssetUtils.getAssetImagePNG(imageList[index]),
-                    width: 25,
-                    height: 25,
-                    fit: BoxFit.contain,
+                return Stack(children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    width: MediaQuery.of(context).size.width,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: Colors.primaries.elementAt(index),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Image.asset(
+                      AssetUtils.getAssetImagePNG(imageList[index]),
+                      width: 25,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                );
+                Positioned(
+                    bottom: 0,
+                    left: 16,
+                    right: 16,
+                    child:  Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Text(imageList[index]),
+                height: 40,
+                decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+                borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10)))))
+                 ]);
               },
               titleBuilder: (index) => Text(imageList[index]),
               showTitle: false,
