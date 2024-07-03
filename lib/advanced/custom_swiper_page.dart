@@ -10,7 +10,14 @@ class CustomSwiperPage extends StatefulWidget {
 }
 
 class _CustomSwiperPageState extends State<CustomSwiperPage> {
-  List<String> imageList = ['emoji1', 'emoji2', 'emoji3', 'emoji4','emoji5','emoji6'];
+  List<String> imageList = [
+    'emoji1',
+    'emoji2',
+    'emoji3',
+    'emoji4',
+    'emoji5',
+    'emoji6'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,34 @@ class _CustomSwiperPageState extends State<CustomSwiperPage> {
                   ),
                 );
               },
-              data: imageList)
+              titleBuilder: (index) => Text(imageList[index]),
+              showTitle: true,
+              data: imageList),
+          SizedBox(
+            height: 10,
+          ),
+          CustomSwiperWidget(
+              height: 150,
+              swiperBuilder: (index) {
+                debugPrint("index====$index");
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  width: MediaQuery.of(context).size.width,
+                  height: 150,
+                  decoration: BoxDecoration(
+                      color: Colors.primaries.elementAt(index),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Image.asset(
+                    AssetUtils.getAssetImagePNG(imageList[index]),
+                    width: 25,
+                    height: 25,
+                    fit: BoxFit.contain,
+                  ),
+                );
+              },
+              titleBuilder: (index) => Text(imageList[index]),
+              showTitle: false,
+              data: imageList),
         ],
       ),
     );

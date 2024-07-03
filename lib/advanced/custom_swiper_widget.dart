@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'dart:core';
 
 typedef SwiperBuilder = Widget Function(int index);
@@ -12,12 +10,24 @@ class CustomSwiperWidget extends StatefulWidget {
       required this.swiperBuilder,
       required this.data,
       required this.height,
-      this.onTap});
+      this.titleBuilder,
+      this.onTap,
+      this.isLoop = true,
+      this.showTitle = false,
+      this.showIndicator = true,
+      this.intervalTime = 3000,
+      this.translateTime = 500});
 
   final SwiperBuilder swiperBuilder;
+  final SwiperBuilder? titleBuilder;
   final Function(int index)? onTap;
   final List data;
   final double height;
+  final bool isLoop;
+  final int intervalTime;
+  final int translateTime;
+  final bool showTitle;
+  final bool showIndicator;
 
   @override
   State<CustomSwiperWidget> createState() => _CustomSwiperWidgetState();
@@ -33,18 +43,25 @@ class _CustomSwiperWidgetState extends State<CustomSwiperWidget> {
   void initState() {
     super.initState();
     pageController = PageController(initialPage: 0 + widget.data.length * 200);
-    initTimer();
+    if (widget.isLoop) {
+      initTimer();
+    }
   }
 
   void initTimer() {
     timer?.cancel();
-    timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    timer = Timer.periodic(Duration(milliseconds: widget.intervalTime),
+        (Timer timer) {
       if (pageController.positions.isNotEmpty) {
         var currentPage = pageController.page;
         if (currentPage != null) {
           var cIndex = pageController.page!.toInt();
           pageController.animateToPage(cIndex + 1,
-              duration: Duration(milliseconds: 500), curve: Curves.linear);
+              duration: Duration(milliseconds: widget.translateTime),
+              curve: Curves.linear);
+          if (cIndex + 1 > maxCount - 1) {
+            pageController.jumpToPage(0 + widget.data.length * 200);
+          }
         }
         // if(pageController.page.toString().split(".").length >1){
         //   var i = int.parse(pageController.page.toString().split(".")[0])+ 1;
@@ -75,7 +92,7 @@ class _CustomSwiperWidgetState extends State<CustomSwiperWidget> {
       listWidget.add(Container(
         width: _currentIndex == i ? 15 : 8,
         height: 4,
-        margin: EdgeInsets.symmetric(horizontal: 2),
+        margin: const EdgeInsets.symmetric(horizontal: 2),
         decoration: BoxDecoration(
             color: _currentIndex == i ? Colors.green : Colors.grey,
             borderRadius: BorderRadius.circular(2)),
@@ -127,6 +144,21 @@ class _CustomSwiperWidgetState extends State<CustomSwiperWidget> {
                   // }
                 },
               ),
+              widget.showTitle?
+              Positioned(
+                  bottom: 0,
+                  left: 16,
+                  right: 16,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: widget.titleBuilder?.call(_currentIndex),
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.2),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                  )):const SizedBox(),
               Positioned(bottom: 10, right: 16 + 10, child: _buildIndicator())
             ],
           )),
