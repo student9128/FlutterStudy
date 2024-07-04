@@ -47,7 +47,6 @@ class _CustomSwiperPageState extends State<CustomSwiperPage> {
                 );
               },
               titleBuilder: (index) => Text(imageList[index]),
-              showTitle: true,
               data: imageList),
           SizedBox(
             height: 10,
@@ -71,23 +70,23 @@ class _CustomSwiperPageState extends State<CustomSwiperPage> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                Positioned(
-                    bottom: 0,
-                    left: 16,
-                    right: 16,
-                    child:  Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Text(imageList[index]),
-                height: 40,
-                decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.2),
-                borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10)))))
-                 ]);
+                  Positioned(
+                      bottom: 0,
+                      left: 16,
+                      right: 16,
+                      child: Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          child: Text(imageList[index]),
+                          height: 40,
+                          decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.2),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)))))
+                ]);
               },
               titleBuilder: (index) => Text(imageList[index]),
-              showTitle: false,
               data: imageList),
         ],
       ),

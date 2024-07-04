@@ -13,7 +13,6 @@ class CustomSwiperWidget extends StatefulWidget {
       this.titleBuilder,
       this.onTap,
       this.isLoop = true,
-      this.showTitle = false,
       this.showIndicator = true,
       this.intervalTime = 3000,
       this.translateTime = 500});
@@ -26,7 +25,6 @@ class CustomSwiperWidget extends StatefulWidget {
   final bool isLoop;
   final int intervalTime;
   final int translateTime;
-  final bool showTitle;
   final bool showIndicator;
 
   @override
@@ -144,22 +142,8 @@ class _CustomSwiperWidgetState extends State<CustomSwiperWidget> {
                   // }
                 },
               ),
-              widget.showTitle?
-              Positioned(
-                  bottom: 0,
-                  left: 16,
-                  right: 16,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: widget.titleBuilder?.call(_currentIndex),
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.2),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10))),
-                  )):const SizedBox(),
-              Positioned(bottom: 10, right: 16 + 10, child: _buildIndicator())
+              widget.showIndicator?
+              Positioned(bottom: 10, right: 16 + 10, child: _buildIndicator()):const SizedBox()
             ],
           )),
     );
