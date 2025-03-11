@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study_list/advanced/custom_swiper_widget.dart';
+import 'package:flutter_study_list/advanced/custom_widgets/custom_line_test.dart';
 import 'package:flutter_study_list/util/asset_utils.dart';
 
 class CustomSwiperPage extends StatefulWidget {
@@ -88,6 +89,8 @@ class _CustomSwiperPageState extends State<CustomSwiperPage> {
               },
               titleBuilder: (index) => Text(imageList[index]),
               data: imageList),
+          SizedBox(height: 20,),
+          Container(child: CustomPaint(foregroundPainter: CustomLineTest(),size: Size(300, 300),),)
         ],
       ),
     );

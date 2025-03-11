@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:amap_flutter_location/amap_flutter_location.dart';
+// import 'package:amap_flutter_location/amap_flutter_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -22,34 +22,34 @@ class _GaoDeMapPageState extends State<GaoDeMapPage> {
    @override
   void initState() {
     super.initState();
-    initAMap();
+    // initAMap();
     _mList=combineList2Map(Constants.aMapList, aMapPageName);
   }
-  initAMap(){
-     /// 设置是否已经包含高德隐私政策并弹窗展示显示用户查看，如果未包含或者没有弹窗展示，高德定位SDK将不会工作
-    ///
-    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
-    /// <b>必须保证在调用定位功能之前调用， 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
-    ///
-    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
-    ///
-    /// [hasContains] 隐私声明中是否包含高德隐私政策说明
-    ///
-    /// [hasShow] 隐私权政策是否弹窗展示告知用户
-    AMapFlutterLocation.updatePrivacyShow(true, true);
-
-    /// 设置是否已经取得用户同意，如果未取得用户同意，高德定位SDK将不会工作
-    ///
-    /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
-    ///
-    /// <b>必须保证在调用定位功能之前调用, 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
-    ///
-    /// [hasAgree] 隐私权政策是否已经取得用户同意
-    AMapFlutterLocation.updatePrivacyAgree(true);
-
-    requestPermission();
-    AMapFlutterLocation.setApiKey(ConstantConfigs.apiKey, '');
-  }
+  // initAMap(){
+  //    /// 设置是否已经包含高德隐私政策并弹窗展示显示用户查看，如果未包含或者没有弹窗展示，高德定位SDK将不会工作
+  //   ///
+  //   /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+  //   /// <b>必须保证在调用定位功能之前调用， 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
+  //   ///
+  //   /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+  //   ///
+  //   /// [hasContains] 隐私声明中是否包含高德隐私政策说明
+  //   ///
+  //   /// [hasShow] 隐私权政策是否弹窗展示告知用户
+  //   AMapFlutterLocation.updatePrivacyShow(true, true);
+  //
+  //   /// 设置是否已经取得用户同意，如果未取得用户同意，高德定位SDK将不会工作
+  //   ///
+  //   /// 高德SDK合规使用方案请参考官网地址：https://lbs.amap.com/news/sdkhgsy
+  //   ///
+  //   /// <b>必须保证在调用定位功能之前调用, 建议首次启动App时弹出《隐私政策》并取得用户同意</b>
+  //   ///
+  //   /// [hasAgree] 隐私权政策是否已经取得用户同意
+  //   AMapFlutterLocation.updatePrivacyAgree(true);
+  //
+  //   requestPermission();
+  //   AMapFlutterLocation.setApiKey(ConstantConfigs.apiKey, '');
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(title: Text('高德地图'),),body: ListView.builder(

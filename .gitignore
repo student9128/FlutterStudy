@@ -46,3 +46,6 @@ app.*.map.json
 /android/app/release
 /android/app/build/
 local.properties
+
+# FVM Version Cache
+.fvm/

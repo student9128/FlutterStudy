@@ -79,6 +79,7 @@ android {
     }
 
     defaultConfig {
+        namespace "com.kevin.flutter_study_list"
         applicationId "com.kevin.flutter_study_list"
         minSdkVersion 21
         targetSdkVersion 33
